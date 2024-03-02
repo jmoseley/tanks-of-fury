@@ -1,50 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdtfnf5v48evu"]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource type="Texture2D" uid="uid://dmwq1qwfb14g5" path="res://art/tankBody_green.png" id="1_ijgiu"]
-[ext_resource type="Script" path="res://Player.gd" id="1_qjgw5"]
-[ext_resource type="Texture2D" uid="uid://bi6qe8s4wnkhq" path="res://art/tankGreen_barrel1_outline.png" id="3_elxrj"]
+[ext_resource path="res://art/tankGreen_barrel1_outline.png" type="Texture" id=1]
+[ext_resource path="res://art/tankBody_green_outline.png" type="Texture" id=2]
+[ext_resource path="res://Player.gd" type="Script" id=3]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_42txo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_ijgiu")
-}],
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": &"drive",
+"name": "default",
 "speed": 5.0
-}]
+} ]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dea77"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_elxrj")
-}],
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": &"turret",
+"name": "default",
 "speed": 5.0
-}]
+} ]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a21to"]
-size = Vector2(60, 58)
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 39, 42 )
 
 [node name="Player" type="Area2D"]
-script = ExtResource("1_qjgw5")
-metadata/_edit_group_ = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Body" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_42txo")
-animation = &"drive"
+[node name="Body" type="AnimatedSprite" parent="."]
+rotation = 1.5708
+frames = SubResource( 1 )
 
-[node name="Turret" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.08165e-12, 12)
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_dea77")
-animation = &"turret"
+[node name="Turret" type="AnimatedSprite" parent="."]
+rotation = 1.5708
+frames = SubResource( 2 )
+offset = Vector2( 0, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_a21to")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+shape = SubResource( 3 )
