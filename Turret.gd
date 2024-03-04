@@ -16,7 +16,6 @@ func _process(delta):
 	time_since_last_shot += delta
 	
 	# todo: if the delta is too large, then the time since the last shot will be greater than the fire rate
-	# this will cause the player to shoot multiple times in a single frame
 
 	var parent_position = get_parent().position
 

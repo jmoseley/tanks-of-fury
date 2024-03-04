@@ -4,6 +4,7 @@ export(PackedScene) var mob_scene
 export(PackedScene) var bullet_scene
 var score
 
+signal go_to_position(position)
 
 func _ready():
 	randomize()
@@ -66,3 +67,11 @@ func _on_Turret_shoot(position, rotation):
 	add_child(bullet)
 	bullet.add_to_group("bullets")
 
+func _input(event):
+   # Mouse in viewport coordinates.
+   if event is InputEventMouseButton:
+	   print("Mouse Click/Unclick at: ", event.position)
+	   emit_signal("go_to_position", event.position)
+   elif event is InputEventScreenTouch:
+	   print("Touch at: ", event.position)
+	   emit_signal("go_to_position", event.position)
