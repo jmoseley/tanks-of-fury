@@ -2,6 +2,7 @@ extends RigidBody2D
 
 export var health = 100
 
+signal hit(damage)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,3 +19,9 @@ func _ready():
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+
+func _on_Mob_hit(damage):
+	health -= damage
+	if health <= 0:
+		queue_free()

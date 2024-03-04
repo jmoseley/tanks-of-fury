@@ -46,12 +46,12 @@ func _process(delta):
 				diff -= 2 * PI
 			if diff < -PI:
 				diff += 2 * PI
-			rotation_dir = 1
+			rotation_dir = -1
 			if diff < 0:
-				rotation_dir = -1
+				rotation_dir = 1
 			var rotation_amount = min(abs(diff), rotation_speed * delta)
 			angle += rotation_amount * rotation_dir
-			move_direction = 1
+			move_direction = -1
 
 	# set rotation of child Body
 	$Body.rotation = angle

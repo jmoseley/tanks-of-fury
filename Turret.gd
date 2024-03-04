@@ -2,6 +2,7 @@ extends Node2D
 
 export var fire_rate = 1 # shots per second
 export var rotation_speed = 7 # radians per second
+export(PackedScene) var bullet_scene
 
 signal shoot(position, rotation)
 
@@ -21,7 +22,8 @@ func _process(delta):
 
 	# if the time since the last shot is greater than the fire rate, then shoot
 	if time_since_last_shot > 1 / fire_rate:
-		emit_signal("shoot", parent_position, rotation - PI/2)
+		# emit_signal("shoot", parent_position, rotation - PI/2)
+		shoot()
 		time_since_last_shot = 0
 
 	# aim towards the nearest enemy
@@ -55,3 +57,16 @@ func _process(delta):
 	var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
 	rotation += rotation_amount * rotation_direction
 
+func shoot():
+	# Create a new instance of the Bullet scene.
+	var bullet = bullet_scene.instance()
+
+	# Set the bullet's position to the turret's position.
+	bullet.position = get_parent().position
+	# Set the bullet's direction to the turret's rotation.
+	bullet.rotation = rotation - PI/2
+	bullet.velocity = Vector2(0, -1000).rotated(bullet.rotation)
+
+	# Add the bullet to the Main scene.
+	get_tree().get_root().add_child(bullet)
+	bullet.add_to_group("bullets")

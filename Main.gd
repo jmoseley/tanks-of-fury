@@ -53,20 +53,6 @@ func _on_MobTimer_timeout():
 	add_child(mob)
 	mob.add_to_group("mobs")
 
-func _on_Turret_shoot(position, rotation):
-	# Create a new instance of the Bullet scene.
-	var bullet = bullet_scene.instance()
-
-	# Set the bullet's position to the turret's position.
-	bullet.position = position
-	# Set the bullet's direction to the turret's rotation.
-	bullet.rotation = rotation
-	bullet.velocity = Vector2(0, -1000).rotated(bullet.rotation)
-
-	# Add the bullet to the Main scene.
-	add_child(bullet)
-	bullet.add_to_group("bullets")
-
 func _input(event):
    # Mouse in viewport coordinates.
    if event is InputEventMouseButton:
