@@ -1,10 +1,36 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://art/tankBody_blue_outline.png" type="Texture" id=1]
 [ext_resource path="res://art/tankBody_red_outline.png" type="Texture" id=2]
 [ext_resource path="res://art/tankBlue_barrel1_outline.png" type="Texture" id=3]
 [ext_resource path="res://art/tankRed_barrel1_outline.png" type="Texture" id=4]
 [ext_resource path="res://Mob.gd" type="Script" id=5]
+[ext_resource path="res://art/Retro Impact Effect Pack 3 A.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 32, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 64, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 96, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 128, 288, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -12,6 +38,11 @@ animations = [ {
 "loop": true,
 "name": "blue",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "die",
+"speed": 30.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -24,6 +55,11 @@ animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "blue",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "die",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -43,12 +79,12 @@ script = ExtResource( 5 )
 rotation = -1.5708
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
-animation = "red"
+animation = "die"
 
 [node name="Turret" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 2 )
-animation = "red"
+animation = "die"
 offset = Vector2( 0, 20 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

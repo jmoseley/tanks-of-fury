@@ -18,4 +18,10 @@ func _on_Bullet_body_entered(body):
 	# if this is an enemy, emit a signal to it
 	if body.is_in_group("mobs"):
 		body.emit_signal("hit", damage)
-		queue_free()
+	$AnimatedSprite.play("explosion")
+	$CollisionShape2D.disabled = true
+	$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
+	velocity = Vector2.ZERO
+
+func _on_AnimatedSprite_animation_finished():
+	queue_free()
