@@ -1,6 +1,6 @@
 extends Node2D
 
-export var fire_rate = 1 # shots per second
+export var fire_rate = 2.0 # shots per second
 export var rotation_speed = 7 # radians per second
 export(PackedScene) var bullet_scene
 
@@ -21,7 +21,7 @@ func _process(delta):
 	var parent_position = get_parent().position
 
 	# if the time since the last shot is greater than the fire rate, then shoot
-	if time_since_last_shot > 1 / fire_rate:
+	if time_since_last_shot > 1.0 / fire_rate:
 		# emit_signal("shoot", parent_position, rotation - PI/2)
 		shoot()
 		time_since_last_shot = 0

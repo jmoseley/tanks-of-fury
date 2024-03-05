@@ -56,6 +56,8 @@ func _process(delta):
 	# set rotation of child Body
 	$Body.rotation = angle
 
+	angle = fmod(angle, 2 * PI)
+
 	var velocity = Vector2(move_direction, 0).rotated(angle).normalized() * speed * delta
 	position += velocity
 	
