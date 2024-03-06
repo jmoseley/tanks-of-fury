@@ -15,23 +15,19 @@ func _ready():
 #	pass
 
 func game_over():
+	get_tree().call_group("mobs", "stop_firing")
 	$MobTimer.stop()
-	new_game()
+	$RestartTimer.start()
 
 func new_game():
-	var mobs = get_tree().get_nodes_in_group("mobs")
-	for mob in mobs:
-		mob.queue_free()
-	var bullets = get_tree().get_nodes_in_group("bullets")
-	for bullet in bullets:
-		bullet.queue_free()
+	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("bullets", "queue_free")
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
-	_on_MobTimer_timeout()
 	
 func _on_MobTimer_timeout():
 	var num_mobs = get_tree().get_nodes_in_group("mobs").size()
@@ -57,6 +53,8 @@ func _input(event):
    elif event is InputEventScreenTouch:
 	   emit_signal("go_to_position", event.position)
 
-
 func _on_Player_dead():
 	game_over()
+
+func _on_RestartTimer_timeout():
+	new_game()

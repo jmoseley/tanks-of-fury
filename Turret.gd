@@ -19,11 +19,6 @@ func _process(delta):
 	time_since_last_shot += delta
 	
 	# todo: if the delta is too large, then the time since the last shot will be greater than the fire rate
-
-	# if the time since the last shot is greater than the fire rate, then shoot
-	if time_since_last_shot > 1.0 / fire_rate:
-		shoot()
-		time_since_last_shot = 0
 	
 	# rotate the turret towards the target angle with a maximum rotation speed, turning the shortest direction
 	var angle_difference = target_angle - rotation
@@ -39,6 +34,20 @@ func _process(delta):
 	
 	var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
 	rotation += rotation_amount * rotation_direction
+
+	if fire_rate > 0 && time_since_last_shot > 1.0 / fire_rate && abs(angle_difference) < PI / 8:
+		shoot()
+		time_since_last_shot = 0
+
+func hide():
+	print("turret hide")
+	fire_rate = 0
+	$Turret.hide()
+
+func show():
+	print("turret show")
+	fire_rate = 1.0
+	$Turret.show()
 
 func shoot():
 	# Create a new instance of the Bullet scene.

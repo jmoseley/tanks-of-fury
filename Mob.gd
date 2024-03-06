@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 
 var time_since_position_change = INF
 var target_position = Vector2.ZERO
+var am_firing = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,6 +56,10 @@ func _process(delta):
 	var velocity = Vector2(move_direction, 0).rotated(angle).normalized() * speed * delta
 	position += velocity
 
+	if !am_firing:
+		$Turret.target_angle = angle + PI / 2
+		return
+
 	# point the turret at the player
 	var player_position = get_node("/root/Main/Player").position
 	var turret_target_angle = position.angle_to_point(player_position)
@@ -73,3 +78,7 @@ func _on_Mob_hit(damage):
 
 func _on_Body_animation_finished():
 	queue_free()
+
+func stop_firing():
+	$Turret.fire_rate = 0
+	am_firing = false

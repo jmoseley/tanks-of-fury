@@ -4,6 +4,7 @@ export var speed = 400 # How fast the player will move (pixels/sec).
 export var health = 100
 var screen_size # Size of the game window.
 export var rotation_speed = 5
+export var fire_rate = 1.0
 
 signal hit(damage)
 signal dead
@@ -13,6 +14,7 @@ func _ready():
 	$Turret/Turret.animation = 'green'
 	$Body.animation = 'green'
 	hide()
+	$Turret.fire_rate = 0
 
 # don't use the rotation property, because only the body rotates, not the entire node
 export var angle = PI / 2
@@ -91,6 +93,10 @@ func _process(delta):
 	if nearest_mob:
 		# change the angle of the turret to aim at the nearest enemy, with a maximum rotation speed
 		target_angle = position.angle_to_point(nearest_mob.global_position)
+		$Turret.fire_rate = fire_rate
+	else:
+		$Turret.fire_rate = 0
+	
 	$Turret.target_angle = target_angle + PI / 2
 
 func start(pos):
@@ -117,3 +123,6 @@ func _on_Player_hit(damage):
 
 func _on_Body_animation_finished():
 	emit_signal("dead")
+	$Body.disconnect("animation_finished", self, "_on_Body_animation_finished")
+	$Body.stop()
+	hide()
