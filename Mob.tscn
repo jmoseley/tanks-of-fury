@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/tankBody_blue_outline.png" type="Texture" id=1]
 [ext_resource path="res://art/tankBody_red_outline.png" type="Texture" id=2]
-[ext_resource path="res://art/tankBlue_barrel1_outline.png" type="Texture" id=3]
-[ext_resource path="res://art/tankRed_barrel1_outline.png" type="Texture" id=4]
+[ext_resource path="res://Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Mob.gd" type="Script" id=5]
 [ext_resource path="res://art/Retro Impact Effect Pack 3 A.png" type="Texture" id=6]
 
@@ -50,24 +49,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "blue",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "die",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "red",
-"speed": 5.0
-} ]
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 29 )
 
@@ -75,16 +56,13 @@ extents = Vector2( 30, 29 )
 script = ExtResource( 5 )
 
 [node name="Body" type="AnimatedSprite" parent="."]
-rotation = -1.5708
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
-animation = "die"
+animation = "blue"
 
-[node name="Turret" type="AnimatedSprite" parent="."]
-rotation = -1.5708
-frames = SubResource( 2 )
-animation = "die"
-offset = Vector2( 0, 20 )
+[node name="Turret" parent="." instance=ExtResource( 3 )]
+target_group = "player"
+bullet_speed = 500
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.5, -0.499999 )
