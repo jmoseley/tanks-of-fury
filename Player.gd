@@ -7,6 +7,7 @@ export var rotation_speed = 5
 export var fire_rate = 1.0
 
 signal hit(damage)
+signal on_health_changed(health)
 signal dead
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 	$Body.animation = 'green'
 	hide()
 	$Turret.fire_rate = 0
+	set_health(100)
 
 # don't use the rotation property, because only the body rotates, not the entire node
 export var angle = PI / 2
@@ -22,6 +24,9 @@ var target_position = Vector2.INF
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if health <= 0:
+		return
+		
 	var rotation_dir = 0
 	if Input.is_action_pressed("turn_left"):
 		rotation_dir -= 1
@@ -67,7 +72,7 @@ func _process(delta):
 
 	var velocity = Vector2(move_direction, 0).rotated(angle).normalized() * speed * delta
 	position += velocity
-	
+
 	# if the player fully moves outside the screen, wrap around
 	if position.x > screen_size.x:
 		position.x = 0
@@ -88,7 +93,7 @@ func _process(delta):
 		if distance < nearest_mob_distance or not nearest_mob:
 			nearest_mob = mob
 			nearest_mob_distance = distance
-	
+
 	var target_angle = angle
 	if nearest_mob:
 		# change the angle of the turret to aim at the nearest enemy, with a maximum rotation speed
@@ -96,16 +101,25 @@ func _process(delta):
 		$Turret.fire_rate = fire_rate
 	else:
 		$Turret.fire_rate = 0
-	
+
 	$Turret.target_angle = target_angle + PI / 2
+
+func set_health(h):
+	health = h
+	emit_signal("on_health_changed", health)
+
+func decrement_health(damage):
+	health -= damage
+	emit_signal("on_health_changed", health)
 
 func start(pos):
 	position = pos
 	rotation = 0
-	health = 100
+	set_health(100)
 	angle = PI / 2
 	show()
 	$Turret.show()
+	$Turret.rotation = angle + PI / 2
 	$Body.animation = 'green'
 	$CollisionShape2D.disabled = false
 
@@ -113,8 +127,9 @@ func _on_Main_go_to_position(position):
 	target_position = position
 
 func _on_Player_hit(damage):
-	health -= damage
+	decrement_health(damage)
 	if health <= 0:
+		$Body.rotation = 0
 		$Body.animation = 'die'
 		$Body.play()
 		$Body.connect("animation_finished", self, "_on_Body_animation_finished")

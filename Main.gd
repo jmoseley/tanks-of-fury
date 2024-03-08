@@ -6,9 +6,11 @@ var score
 
 signal go_to_position(position)
 
+var game_started = false
+
 func _ready():
 	randomize()
-	new_game()
+	$HUD.show_message("Ready?")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -17,7 +19,9 @@ func _ready():
 func game_over():
 	get_tree().call_group("mobs", "stop_firing")
 	$MobTimer.stop()
-	$RestartTimer.start()
+	$HUD.show_game_over()
+	$Camera.add_trauma(1)
+	game_started = false
 
 func new_game():
 	get_tree().call_group("mobs", "queue_free")
@@ -25,10 +29,13 @@ func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$HUD.update_score(score)
+	$HUD.show_message("Go!")
+	game_started = true
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
-	
+
 func _on_MobTimer_timeout():
 	var num_mobs = get_tree().get_nodes_in_group("mobs").size()
 	if num_mobs > 10:
@@ -42,19 +49,32 @@ func _on_MobTimer_timeout():
 
 	# Set the mob's position to a random location.
 	mob.position = mob_spawn_location.position
+	mob.connect("die", self, "_on_Mob_die")
+	mob.connect("hit", self, "_on_Mob_hit")
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 
 func _input(event):
-   # Mouse in viewport coordinates.
-   if event is InputEventMouseButton:
-	   emit_signal("go_to_position", event.position)
-   elif event is InputEventScreenTouch:
-	   emit_signal("go_to_position", event.position)
+	if game_started == false:
+		return
+	# Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		emit_signal("go_to_position", event.position)
+	elif event is InputEventScreenTouch:
+		emit_signal("go_to_position", event.position)
 
 func _on_Player_dead():
 	game_over()
 
-func _on_RestartTimer_timeout():
-	new_game()
+func _on_Player_hit(damage):
+	$Camera.add_trauma(damage * 0.05)
+
+func _on_Mob_die(age):
+	score += 100
+	score += round(max(10 - age, 0))
+	$HUD.update_score(score)
+
+func _on_Mob_hit(damage):
+	score += damage
+	$HUD.update_score(score)

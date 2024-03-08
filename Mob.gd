@@ -5,6 +5,7 @@ export var turn_rotation_speed = 3
 export var speed = 0
 
 signal hit(damage)
+signal die(age)
 
 var angle = 0
 var rng = RandomNumberGenerator.new()
@@ -12,6 +13,7 @@ var rng = RandomNumberGenerator.new()
 var time_since_position_change = INF
 var target_position = Vector2.ZERO
 var am_firing = true
+var age = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +30,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	age += delta
 	# if target_position is set, move towards it with a max rotation speed
 	# calculate the angle to the target position
 	time_since_position_change += delta
@@ -75,6 +78,7 @@ func _on_Mob_hit(damage):
 		$Body.play("die")
 		$Turret.hide()
 		$Body.connect("animation_finished", self, "_on_Body_animation_finished")
+		emit_signal("die", age)
 
 func _on_Body_animation_finished():
 	queue_free()

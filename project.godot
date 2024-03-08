@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Tanks of Fury"
+config/name="Iron Fury"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
@@ -18,11 +18,15 @@ config/icon="res://icon.png"
 
 window/size/width=720
 window/size/height=1280
-window/size/test_width=800
-window/size/test_height=600
+window/size/test_width=720
+window/size/test_height=1280
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor]
+
+version_control_autoload_on_startup=true
 
 [editor_plugins]
 
@@ -75,6 +79,13 @@ pointing/emulate_touch_from_mouse=true
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[ramatak]
+
+monetization/ad_units={
+}
+monetization/ad_plugin_config={
+}
 
 [rendering]
 
