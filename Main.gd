@@ -20,7 +20,6 @@ func game_over():
 	get_tree().call_group("mobs", "stop_firing")
 	$MobTimer.stop()
 	$HUD.show_game_over()
-	$Camera.add_trauma(1)
 	game_started = false
 
 func new_game():
@@ -67,8 +66,11 @@ func _input(event):
 func _on_Player_dead():
 	game_over()
 
-func _on_Player_hit(damage):
-	$Camera.add_trauma(damage * 0.05)
+func _on_Player_health_changed(damage, new_health):
+	if new_health <= 0:
+		$Camera.add_trauma(1)
+	else:
+		$Camera.add_trauma(damage * 0.05)
 
 func _on_Mob_die(age):
 	score += 100

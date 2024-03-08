@@ -37,5 +37,5 @@ func _on_MessageTimer_timeout():
 	$Message.hide()
 
 
-func _on_Player_on_health_changed(health):
+func _on_Player_on_health_changed(damage, health):
 	$LifeBar/ProgressBar.value = health

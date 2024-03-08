@@ -7,7 +7,7 @@ export var rotation_speed = 5
 export var fire_rate = 1.0
 
 signal hit(damage)
-signal on_health_changed(health)
+signal on_health_changed(damage, health)
 signal dead
 
 func _ready():
@@ -106,11 +106,11 @@ func _process(delta):
 
 func set_health(h):
 	health = h
-	emit_signal("on_health_changed", health)
+	emit_signal("on_health_changed", 0, health)
 
 func decrement_health(damage):
 	health -= damage
-	emit_signal("on_health_changed", health)
+	emit_signal("on_health_changed", damage, health)
 
 func start(pos):
 	position = pos
@@ -131,6 +131,7 @@ func _on_Player_hit(damage):
 	if health <= 0:
 		$Body.rotation = 0
 		$Body.animation = 'die'
+		$Body.scale = Vector2(2, 2)
 		$Body.play()
 		$Body.connect("animation_finished", self, "_on_Body_animation_finished")
 		$Turret.hide()
@@ -140,4 +141,5 @@ func _on_Body_animation_finished():
 	emit_signal("dead")
 	$Body.disconnect("animation_finished", self, "_on_Body_animation_finished")
 	$Body.stop()
+	$Body.scale = Vector2(0.75, 0.75)
 	hide()
