@@ -35,8 +35,9 @@ func _process(delta):
 		$Turret.target_position = Vector2.INF
 
 var target_position = Vector2.INF
-var velocity = Vector2()
+var movement_velocity = Vector2()
 var is_reversing = false
+var impulse_velocity = Vector2()
 
 func control(delta):
 	var rotation_dir = 0
@@ -50,12 +51,12 @@ func control(delta):
 
 	if Input.is_action_pressed("move_forward"):
 		is_reversing = false
-		velocity = Vector2(0, 1).rotated(rotation).normalized()
+		movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
 		target_position = Vector2.INF
 	if Input.is_action_pressed("move_backward"):
 		is_reversing = true
 		target_position = Vector2.INF
-		velocity = Vector2(0, -1).rotated(rotation).normalized() / 2
+		movement_velocity = Vector2(0, -1).rotated(rotation).normalized() / 2
 
 	# if target_position is set, move towards it with a max rotation speed
 	if target_position != Vector2.INF:
@@ -77,14 +78,18 @@ func control(delta):
 			
 			var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
 			rotation += rotation_dir * rotation_amount
-			velocity = Vector2(0, 1).rotated(rotation).normalized()
+			movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
 
 func _physics_process(delta):
 	position.x = wrapf(position.x, 0, screen_size.x)
 	position.y = wrapf(position.y, 0, screen_size.y)
 	control(delta)
-	move_and_slide(velocity * speed)
-	velocity = Vector2(0, -1 if is_reversing else 1).rotated(rotation).normalized() * velocity.linear_interpolate(Vector2(), 0.1).length()
+	move_and_slide(movement_velocity * speed + impulse_velocity)
+	movement_velocity = Vector2(0, -1 if is_reversing else 1).rotated(rotation).normalized() * movement_velocity.linear_interpolate(Vector2(), 0.1).length()
+	impulse_velocity = impulse_velocity.linear_interpolate(Vector2(), 0.1)
+
+func apply_impulse(direction, force):
+	impulse_velocity += direction.normalized() * force
 
 func set_health(h):
 	health = h
@@ -109,7 +114,7 @@ func _on_Main_go_to_position(position):
 	target_position = position
 
 func _on_Player_hit(damage, location, velocity):
-	# apply_impulse(global_position - location, velocity)
+	apply_impulse(velocity, damage * 10)
 	decrement_health(damage)
 	if health <= 0:
 		rotation = 0
