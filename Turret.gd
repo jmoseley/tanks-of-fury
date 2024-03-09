@@ -2,7 +2,7 @@ extends Node2D
 
 export var fire_rate = 1.0 # shots per second
 export var rotation_speed = 7 # radians per second
-export var target_angle = 0
+export var target_position = Vector2.INF
 export var damage_dealt = 10
 export var target_group = "mobs"
 export var bullet_speed = 1000
@@ -20,12 +20,15 @@ func _process(delta):
 
 	# todo: if the delta is too large, then the time since the last shot will be greater than the fire rate
 
-	# rotate the turret towards the target angle with a maximum rotation speed, turning the shortest direction
-	var angle_difference = target_angle - rotation
+	var angle_difference = 0
+	if target_position != Vector2.INF:
+		angle_difference = get_angle_to(target_position) - PI / 2
+	else:
+		angle_difference = -rotation
+
 	if angle_difference > PI:
 		angle_difference -= 2 * PI
-
-	if angle_difference < -PI:
+	elif angle_difference < -PI:
 		angle_difference += 2 * PI
 
 	var rotation_direction = 1
@@ -46,7 +49,7 @@ func shoot():
 	# Set the bullet's position to the turret's position.
 	bullet.position = global_position
 	# Set the bullet's direction to the turret's rotation.
-	bullet.rotation = rotation
+	bullet.rotation = global_rotation
 	bullet.velocity = Vector2(0, bullet_speed).rotated(bullet.rotation)
 	bullet.damage = damage_dealt
 	bullet.target_group = target_group

@@ -31,13 +31,14 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Go!")
 	game_started = true
+	$HUD.start()
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
 
 func _on_MobTimer_timeout():
 	var num_mobs = get_tree().get_nodes_in_group("mobs").size()
-	if num_mobs > 10:
+	if num_mobs >= 10:
 		return
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instance()

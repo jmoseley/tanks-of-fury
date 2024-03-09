@@ -4,7 +4,7 @@ export var health = 100
 export var turn_rotation_speed = 3
 export var speed = 0
 
-signal hit(damage)
+signal hit(damage, location, velocity)
 signal die(age)
 
 var angle = 0
@@ -60,18 +60,15 @@ func _process(delta):
 	position += velocity
 
 	if !am_firing:
-		$Turret.target_angle = angle + PI / 2
+		$Turret.target_position = Vector2.INF
 		return
 
-	# point the turret at the player
-	var player_position = get_node("/root/Main/Player").position
-	var turret_target_angle = position.angle_to_point(player_position)
-	$Turret.target_angle = turret_target_angle + PI / 2
+	$Turret.target_position = get_node("/root/Main/Player").global_position
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
-func _on_Mob_hit(damage):
+func _on_Mob_hit(damage, location, velocity):
 	health -= damage
 	if health <= 0:
 		$Body.scale = Vector2(2, 2)
