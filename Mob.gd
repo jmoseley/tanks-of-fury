@@ -1,7 +1,7 @@
-extends Area2D
+extends KinematicBody2D
 
 export var health = 100
-export var turn_rotation_speed = 3
+export var rotation_speed = 3
 export var speed = 0
 
 signal hit(damage, location, velocity)
@@ -14,6 +14,8 @@ var time_since_position_change = INF
 var target_position = Vector2.ZERO
 var am_firing = true
 var age = 0
+var movement_velocity = Vector2.ZERO
+var impulse_velocity = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,27 +39,6 @@ func _process(delta):
 	if time_since_position_change > rng.randf_range(1, 5):
 		time_since_position_change = 0
 		target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
-	
-	var target_angle = position.angle_to_point(target_position)
-	var diff = target_angle - angle
-	if diff > PI:
-		diff -= 2 * PI
-	if diff < -PI:
-		diff += 2 * PI
-	var rotation_dir = 1
-	if diff < 0:
-		rotation_dir = -1
-	var rotation_amount = min(abs(diff), turn_rotation_speed * delta)
-	var angle_change = rotation_amount * rotation_dir
-	var move_direction = -1
-
-	angle += angle_change
-	angle = fmod(angle, 2 * PI)
-	$Body.rotation = angle + PI / 2
-	$CollisionShape2D.rotation = angle + PI / 2
-
-	var velocity = Vector2(move_direction, 0).rotated(angle).normalized() * speed * delta
-	position += velocity
 
 	if !am_firing:
 		$Turret.target_position = Vector2.INF
@@ -65,10 +46,40 @@ func _process(delta):
 
 	$Turret.target_position = get_node("/root/Main/Player").global_position
 
+func control(delta):
+	if (target_position - position).length() < 100:
+		target_position = Vector2.INF
+	else:
+		# calculate the angle to the target position
+		var angle_difference = get_angle_to(target_position) - PI / 2
+
+		if angle_difference > PI:
+			angle_difference -= 2 * PI
+		elif angle_difference < -PI:
+			angle_difference += 2 * PI
+		
+		var rotation_dir = 1
+		if angle_difference < 0:
+			rotation_dir = -1
+		
+		var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
+		rotation += rotation_dir * rotation_amount
+		movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
+
+func _physics_process(delta):
+	control(delta)
+	move_and_slide(movement_velocity * speed + impulse_velocity)
+	movement_velocity = Vector2(0, 1).rotated(rotation).normalized() * movement_velocity.linear_interpolate(Vector2(), 0.1).length()
+	impulse_velocity = impulse_velocity.linear_interpolate(Vector2(), 0.1)
+
+func apply_impulse(direction, force):
+	impulse_velocity += direction.normalized() * force
+
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Mob_hit(damage, location, velocity):
+	apply_impulse(velocity, damage * 10)
 	health -= damage
 	if health <= 0:
 		$Body.scale = Vector2(2, 2)

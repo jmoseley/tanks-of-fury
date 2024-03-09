@@ -40,6 +40,9 @@ var is_reversing = false
 var impulse_velocity = Vector2()
 
 func control(delta):
+	if health <= 0:
+		return
+
 	var rotation_dir = 0
 	if Input.is_action_pressed("turn_left"):
 		rotation_dir = -1
