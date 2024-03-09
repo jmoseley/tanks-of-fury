@@ -11,6 +11,7 @@ var game_started = false
 func _ready():
 	randomize()
 	$HUD.show_message("Ready?")
+	$Level.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -32,6 +33,7 @@ func new_game():
 	$HUD.show_message("Go!")
 	game_started = true
 	$HUD.start()
+	$Level.show()
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()

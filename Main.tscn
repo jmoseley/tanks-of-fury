@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://HUD.gd" type="Script" id=6]
 [ext_resource path="res://pressing.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Camera.gd" type="Script" id=8]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Barrier.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=9]
 size = 140
@@ -118,6 +120,38 @@ margin_bottom = 45.0
 grow_horizontal = 0
 theme = SubResource( 8 )
 percent_visible = false
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Block" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 216, 728 )
+
+[node name="Block2" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 272, 728 )
+
+[node name="Block3" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 328, 728 )
+
+[node name="Block4" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 384, 728 )
+
+[node name="Block5" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 440, 728 )
+
+[node name="Block6" parent="Level" instance=ExtResource( 9 )]
+position = Vector2( 496, 728 )
+
+[node name="Barrier" parent="Level" instance=ExtResource( 10 )]
+position = Vector2( 217, 352 )
+
+[node name="Barrier2" parent="Level" instance=ExtResource( 10 )]
+position = Vector2( 480, 352 )
+
+[node name="Barrier3" parent="Level" instance=ExtResource( 10 )]
+position = Vector2( 128, 1024 )
+
+[node name="Barrier4" parent="Level" instance=ExtResource( 10 )]
+position = Vector2( 576, 1024 )
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource( 1 )]
 

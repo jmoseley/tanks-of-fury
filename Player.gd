@@ -121,6 +121,8 @@ func _on_Player_hit(damage, location, velocity):
 	decrement_health(damage)
 	if health <= 0:
 		rotation = 0
+		movement_velocity = Vector2()
+		impulse_velocity = Vector2()
 		$Body.animation = 'die'
 		$Body.scale = Vector2(2, 2)
 		$Body.play()
