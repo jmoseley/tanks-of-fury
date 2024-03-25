@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Camera.gd" type="Script" id=8]
 [ext_resource path="res://Block.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Barrier.tscn" type="PackedScene" id=10]
+[ext_resource path="res://AirStrike.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=9]
 size = 140
@@ -27,19 +28,19 @@ font_data = ExtResource( 5 )
 size = 64
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.360784, 0.0627451, 0.0627451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.14902, 0.611765, 0, 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=12]
 font_data = ExtResource( 5 )
 
 [sub_resource type="Theme" id=8]
-default_font = SubResource( 7 )
-ProgressBar/styles/bg = SubResource( 5 )
-ProgressBar/styles/fg = SubResource( 6 )
+default_font = SubResource( 12 )
+ProgressBar/styles/bg = SubResource( 10 )
+ProgressBar/styles/fg = SubResource( 11 )
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -178,6 +179,8 @@ limit_top = -75
 limit_right = 850
 limit_bottom = 1355
 script = ExtResource( 8 )
+
+[node name="AirStrike" parent="." instance=ExtResource( 11 )]
 
 [connection signal="go_to_position" from="." to="Player" method="_on_Main_go_to_position"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

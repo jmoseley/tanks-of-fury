@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 export var speed = 400 # How fast the player will move (pixels/sec).
-export var health = 100
+export var health = 1000
 var screen_size # Size of the game window.
 export var rotation_speed = 5
-export var fire_rate = 1.0
+export var fire_rate = 5.0
 
 signal hit(damage, location, angle)
 signal on_health_changed(damage, health)
@@ -16,9 +16,10 @@ func _ready():
 	$Body.animation = 'green'
 	hide()
 	$Turret.fire_rate = 0
+	$Turret.damage_dealt = 3
 	set_health(100)
 
-func _process(delta):
+func _process(_delta):
 	var nearest_mob = null
 	var min_distance = INF
 	for mob in get_tree().get_nodes_in_group("mobs"):
@@ -74,11 +75,11 @@ func control(delta):
 				angle_difference -= 2 * PI
 			elif angle_difference < -PI:
 				angle_difference += 2 * PI
-			
+
 			rotation_dir = 1
 			if angle_difference < 0:
 				rotation_dir = -1
-			
+
 			var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
 			rotation += rotation_dir * rotation_amount
 			movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
@@ -116,7 +117,7 @@ func start(pos):
 func _on_Main_go_to_position(position):
 	target_position = position
 
-func _on_Player_hit(damage, location, velocity):
+func _on_Player_hit(damage, _location, velocity):
 	apply_impulse(velocity, damage * 10)
 	decrement_health(damage)
 	if health <= 0:
@@ -126,13 +127,15 @@ func _on_Player_hit(damage, location, velocity):
 		$Body.animation = 'die'
 		$Body.scale = Vector2(2, 2)
 		$Body.play()
-		$Body.connect("animation_finished", self, "_on_Body_animation_finished")
+		$Body.connect("animation_finished", self, "_on_Body_animation_finished", [], CONNECT_ONESHOT)
 		$Turret.hide()
 		$CollisionShape2D.set_deferred("disabled", true)
 
 func _on_Body_animation_finished():
 	emit_signal("dead")
-	$Body.disconnect("animation_finished", self, "_on_Body_animation_finished")
 	$Body.stop()
 	$Body.scale = Vector2(0.75, 0.75)
 	hide()
+
+func crate_acquired():
+	pass

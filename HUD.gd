@@ -25,7 +25,7 @@ func show_game_over():
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
-	
+
 func start():
 	$StartButton.hide()
 	$Logo.hide()
@@ -38,6 +38,5 @@ func _on_StartButton_pressed():
 func _on_MessageTimer_timeout():
 	$Message.hide()
 
-
-func _on_Player_on_health_changed(damage, health):
+func _on_Player_on_health_changed(_damage, health):
 	$LifeBar/ProgressBar.value = health

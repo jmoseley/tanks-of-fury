@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "godotTools.editorPath.godot3": "/Applications/Godot3.app/Contents/MacOS/Godot"
+}
