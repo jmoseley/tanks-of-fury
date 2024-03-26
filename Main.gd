@@ -4,8 +4,6 @@ export(PackedScene) var mob_scene
 export(PackedScene) var bullet_scene
 var score
 
-signal go_to_position(position)
-
 var game_started = false
 
 func _ready():
@@ -57,15 +55,6 @@ func _on_MobTimer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-
-func _input(event):
-	if game_started == false:
-		return
-	# Mouse in viewport coordinates.
-	if event is InputEventMouseButton:
-		emit_signal("go_to_position", event.position)
-	elif event is InputEventScreenTouch:
-		emit_signal("go_to_position", event.position)
 
 func _on_Player_dead():
 	game_over()

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 400 # How fast the player will move (pixels/sec).
+export var speed = 300 # How fast the player will move (pixels/sec).
 export var health = 1000
 var screen_size # Size of the game window.
 export var rotation_speed = 5
@@ -35,61 +35,34 @@ func _process(_delta):
 		$Turret.fire_rate = 0
 		$Turret.target_position = Vector2.INF
 
-var target_position = Vector2.INF
 var movement_velocity = Vector2()
 var is_reversing = false
 var impulse_velocity = Vector2()
+export var click_radius = 20
 
-func control(delta):
+func _physics_process(_delta):
+	position.x = wrapf(position.x, 0, screen_size.x)
+	position.y = wrapf(position.y, 0, screen_size.y)
+	# control(delta)
+
 	if health <= 0:
 		return
 
-	var rotation_dir = 0
-	if Input.is_action_pressed("turn_left"):
-		rotation_dir = -1
-		target_position = Vector2.INF
-	if Input.is_action_pressed("turn_right"):
-		rotation_dir = 1
-		target_position = Vector2.INF
-	rotation += rotation_dir * rotation_speed * delta
+	var path : Line2D = get_node("/root/Main/HUD/GhostPath")
+	if path.points.size() > 0:
+		var target = path.points[path.points.size()-1]
+		if position.distance_to(target) < 3:
+			path.remove_point(path.points.size()-1)
+			if path.points.size() > 0:
+				target = path.points[path.points.size()-1]
+			else:
+				target = position
+		movement_velocity = (target - position).normalized() * speed
 
-	if Input.is_action_pressed("move_forward"):
-		is_reversing = false
-		movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
-		target_position = Vector2.INF
-	if Input.is_action_pressed("move_backward"):
-		is_reversing = true
-		target_position = Vector2.INF
-		movement_velocity = Vector2(0, -1).rotated(rotation).normalized() / 2
-
-	# if target_position is set, move towards it with a max rotation speed
-	if target_position != Vector2.INF:
-		is_reversing = false
-		if (target_position - position).length() < 100:
-			target_position = Vector2.INF
-		else:
-			# calculate the angle to the target position
-			var angle_difference = get_angle_to(target_position) - PI / 2
-
-			if angle_difference > PI:
-				angle_difference -= 2 * PI
-			elif angle_difference < -PI:
-				angle_difference += 2 * PI
-
-			rotation_dir = 1
-			if angle_difference < 0:
-				rotation_dir = -1
-
-			var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
-			rotation += rotation_dir * rotation_amount
-			movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
-
-func _physics_process(delta):
-	position.x = wrapf(position.x, 0, screen_size.x)
-	position.y = wrapf(position.y, 0, screen_size.y)
-	control(delta)
-	move_and_slide(movement_velocity * speed + impulse_velocity)
-	movement_velocity = Vector2(0, -1 if is_reversing else 1).rotated(rotation).normalized() * movement_velocity.linear_interpolate(Vector2(), 0.1).length()
+	move_and_slide(movement_velocity + impulse_velocity)
+	if movement_velocity.length() > 0:
+		rotation = lerp_angle(rotation, movement_velocity.angle() - PI/2, 0.2)
+	movement_velocity = movement_velocity.linear_interpolate(Vector2(), 0.3)
 	impulse_velocity = impulse_velocity.linear_interpolate(Vector2(), 0.1)
 
 func apply_impulse(direction, force):
@@ -113,9 +86,6 @@ func start(pos):
 	$Turret.rotation = 0
 	$Body.animation = 'green'
 	$CollisionShape2D.disabled = false
-
-func _on_Main_go_to_position(position):
-	target_position = position
 
 func _on_Player_hit(damage, _location, velocity):
 	apply_impulse(velocity, damage * 10)
