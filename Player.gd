@@ -38,7 +38,6 @@ func _process(_delta):
 var movement_velocity = Vector2()
 var is_reversing = false
 var impulse_velocity = Vector2()
-export var click_radius = 20
 
 func _physics_process(_delta):
 	position.x = wrapf(position.x, 0, screen_size.x)
