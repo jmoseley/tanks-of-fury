@@ -39,27 +39,52 @@ var movement_velocity = Vector2()
 var is_reversing = false
 var impulse_velocity = Vector2()
 
-func _physics_process(_delta):
-	position.x = wrapf(position.x, 0, screen_size.x)
-	position.y = wrapf(position.y, 0, screen_size.y)
-	# control(delta)
+func control(delta):
+	if health <= 0:
+		return
+
+	var rotation_dir = 0
+	var pressed = false
+	if Input.is_action_pressed("turn_left"):
+		rotation_dir = -1
+		pressed = true
+	if Input.is_action_pressed("turn_right"):
+		rotation_dir = 1
+		pressed = true
+	rotation += rotation_dir * rotation_speed * delta
+
+	if Input.is_action_pressed("move_forward"):
+		is_reversing = false
+		pressed = true
+		movement_velocity = Vector2(0, 1).rotated(rotation).normalized() * speed
+	if Input.is_action_pressed("move_backward"):
+		is_reversing = true
+		pressed = true
+		movement_velocity = Vector2(0, -1).rotated(rotation).normalized() / 2 * speed
+	return pressed
+
+func _physics_process(delta):
+	var keyboard = control(delta)
 
 	if health <= 0:
 		return
 
 	var path : Line2D = get_node("/root/Main/HUD/GhostPath")
-	if path.points.size() > 0:
-		var target = path.points[path.points.size()-1]
-		if position.distance_to(target) < 3:
-			path.remove_point(path.points.size()-1)
-			if path.points.size() > 0:
-				target = path.points[path.points.size()-1]
-			else:
-				target = position
-		movement_velocity = (target - position).normalized() * speed
+	if keyboard:
+		path.clear_points()
+	else:
+		if path.points.size() > 0:
+			var target = path.points[path.points.size()-1]
+			if position.distance_to(target) < 3:
+				path.remove_point(path.points.size()-1)
+				if path.points.size() > 0:
+					target = path.points[path.points.size()-1]
+				else:
+					target = position
+			movement_velocity = (target - position).normalized() * speed
 
 	move_and_slide(movement_velocity + impulse_velocity)
-	if movement_velocity.length() > 0:
+	if !keyboard && movement_velocity.length() > 0:
 		rotation = lerp_angle(rotation, movement_velocity.angle() - PI/2, 0.2)
 	movement_velocity = movement_velocity.linear_interpolate(Vector2(), 0.3)
 	impulse_velocity = impulse_velocity.linear_interpolate(Vector2(), 0.1)

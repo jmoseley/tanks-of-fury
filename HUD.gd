@@ -88,9 +88,12 @@ func _input(event):
 
 
 func _on_PowerupMenu_item_selected(id:String, position:Vector2):
+	print("Powerup selected: ", id, " at ", position)
+	var viewport_position = get_viewport().get_canvas_transform().affine_inverse() * position
+	print("Viewport position: ", viewport_position)
 	match (id):
 		'air_strike':
-			get_node('/root/Main/AirStrike').shoot(position)
+			get_node('/root/Main/AirStrike').shoot(viewport_position)
 		_:
 			print("Unknown powerup selected: ", id)
 	$PowerupMenu.hide()

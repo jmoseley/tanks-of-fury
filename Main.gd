@@ -61,9 +61,9 @@ func _on_Player_dead():
 
 func _on_Player_health_changed(damage, new_health):
 	if new_health <= 0:
-		$Camera.add_trauma(1)
+		$Player/Camera.add_trauma(1)
 	else:
-		$Camera.add_trauma(damage * 0.05)
+		$Player/Camera.add_trauma(damage * 0.05)
 
 func _on_Mob_die(age):
 	score += 100

@@ -7,7 +7,8 @@ export var radius = 200
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CollisionShape2D.shape.radius = radius
-	position.y = -100
+	# place this just above the top of the screen, in global coordinates, transformed for the current camera view
+	position.y = (get_viewport().get_canvas_transform().affine_inverse() * Vector2(0, -100)).y
 	$Explosion.hide()
 
 func _process(delta):
