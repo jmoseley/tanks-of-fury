@@ -1,26 +1,46 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://art/barricadeMetal.png" type="Texture" id=1]
-[ext_resource path="res://Barrier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://art/tileGrass1.png" type="Texture" id=2]
+[ext_resource path="res://art/tileGrass_roadEast.png" type="Texture" id=3]
+[ext_resource path="res://art/tileGrass_roadCornerLR.png" type="Texture" id=4]
+[ext_resource path="res://art/tileGrass2.png" type="Texture" id=5]
+[ext_resource path="res://art/tileSand_roadCornerUR.png" type="Texture" id=6]
+[ext_resource path="res://art/tileSand_roadSplitN.png" type="Texture" id=7]
+[ext_resource path="res://art/tileSand_roadSplitE.png" type="Texture" id=8]
+[ext_resource path="res://art/tileSand_roadCrossing.png" type="Texture" id=9]
+[ext_resource path="res://art/tileGrass_roadNorth.png" type="Texture" id=10]
+[ext_resource path="res://art/tileGrass_roadCornerUL.png" type="Texture" id=11]
+[ext_resource path="res://art/tileGrass_roadCornerLL.png" type="Texture" id=12]
+[ext_resource path="res://art/tileSand_roadSplitW.png" type="Texture" id=13]
+[ext_resource path="res://art/barricadeMetal.png" type="Texture" id=14]
+[ext_resource path="res://art/tileSand_roadEast.png" type="Texture" id=15]
+[ext_resource path="res://art/tileGrass_transitionS.png" type="Texture" id=16]
+[ext_resource path="res://art/tileGrass_roadSplitW.png" type="Texture" id=17]
+[ext_resource path="res://art/tileGrass_roadTransitionS_dirt.png" type="Texture" id=18]
+[ext_resource path="res://art/tileSand1.png" type="Texture" id=19]
+[ext_resource path="res://art/tileGrass_roadSplitS.png" type="Texture" id=20]
+[ext_resource path="res://art/tileSand2.png" type="Texture" id=21]
+[ext_resource path="res://art/tileSand_roadNorth.png" type="Texture" id=22]
+[ext_resource path="res://art/tileGrass_roadTransitionS.png" type="Texture" id=23]
+[ext_resource path="res://art/tileGrass_roadSplitE.png" type="Texture" id=24]
+[ext_resource path="res://art/tileGrass_roadCornerUR.png" type="Texture" id=25]
+[ext_resource path="res://Barrier.tscn" type="PackedScene" id=26]
+[ext_resource path="res://art/tileSand_roadCornerUL.png" type="Texture" id=27]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 952, 28 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 952, 28 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2492, 28 )
+extents = Vector2( 896, 28 )
 
 [node name="Level" type="Node2D"]
 
-[node name="Barrier" parent="." instance=ExtResource( 2 )]
-position = Vector2( 217, 352 )
-
-[node name="Barrier2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 480, 352 )
-
-[node name="Barrier3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 128, 1024 )
-
-[node name="Barrier4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 576, 1024 )
-
-[node name="Border" type="Node" parent="."]
+[node name="Border" type="Node2D" parent="."]
+position = Vector2( -56, -56 )
 
 [node name="Top" type="StaticBody2D" parent="Border"]
 __meta__ = {
@@ -28,30 +48,30 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Top"]
-position = Vector2( 2492, 28 )
-shape = SubResource( 1 )
+position = Vector2( 952, 28 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Border/Top"]
-position = Vector2( 2492, 28 )
-texture = ExtResource( 1 )
+position = Vector2( 952, 28 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4984, 56 )
+region_rect = Rect2( 0, 0, 1904, 56 )
 
 [node name="Bottom" type="StaticBody2D" parent="Border"]
-position = Vector2( 0, 5040 )
+position = Vector2( 0, 1848 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Bottom"]
-position = Vector2( 2492, 28 )
-shape = SubResource( 1 )
+position = Vector2( 952, 28 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Border/Bottom"]
-position = Vector2( 2492, 28 )
-texture = ExtResource( 1 )
+position = Vector2( 952, 28 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4984, 56 )
+region_rect = Rect2( 0, 0, 1904, 56 )
 
 [node name="Left" type="StaticBody2D" parent="Border"]
 position = Vector2( 56, 56 )
@@ -61,28 +81,881 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Left"]
-position = Vector2( 2492, 28 )
+position = Vector2( 896, 28 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Border/Left"]
-position = Vector2( 2492, 28 )
-texture = ExtResource( 1 )
+position = Vector2( 896, 28 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4984, 56 )
+region_rect = Rect2( 0, 0, 1792, 56 )
 
 [node name="Right" type="StaticBody2D" parent="Border"]
-position = Vector2( 4984, 56 )
+position = Vector2( 1904, 56 )
 rotation = 1.5708
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Right"]
-position = Vector2( 2492, 28 )
+position = Vector2( 896, 28 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Border/Right"]
-position = Vector2( 2492, 28 )
-texture = ExtResource( 1 )
+position = Vector2( 896, 28 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4984, 56 )
+region_rect = Rect2( 0, 0, 1792, 56 )
+
+[node name="Backdrop" type="Node2D" parent="."]
+position = Vector2( -56, -56 )
+
+[node name="TileGrass1" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass2" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass15" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 248 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass16" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 376 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass17" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass18" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 632 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass19" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 760 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass20" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 888 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass21" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1016 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass22" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1144 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass41" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 248 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass42" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 376 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass43" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass44" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 632 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass45" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 760 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass46" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 888 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass47" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1016 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass48" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1144 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass3" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass4" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass5" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass6" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass7" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass8" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass9" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass10" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass11" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass12" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass13" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 120 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass14" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 120 )
+texture = ExtResource( 5 )
+
+[node name="TileGrassRoadCornerLr" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 248 )
+texture = ExtResource( 4 )
+
+[node name="TileGrassRoadEast" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast2" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadCornerLl" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 248 )
+texture = ExtResource( 12 )
+
+[node name="TileGrassRoadCornerUr" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 376 )
+texture = ExtResource( 25 )
+
+[node name="TileGrassRoadEast3" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 376 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadSplitW" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 376 )
+texture = ExtResource( 17 )
+
+[node name="TileGrassRoadCornerLr2" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 248 )
+texture = ExtResource( 4 )
+
+[node name="TileGrass53" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 248 )
+texture = ExtResource( 2 )
+
+[node name="TileGrassRoadEast4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast5" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast6" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast7" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast8" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 248 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadCornerLl2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 248 )
+texture = ExtResource( 12 )
+
+[node name="TileSand2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand3" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileSand4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand5" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileSand6" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand7" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileSand8" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1656 )
+texture = ExtResource( 19 )
+
+[node name="TileGrassTransitionS" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileSand1" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1400 )
+texture = ExtResource( 19 )
+
+[node name="TileSand9" type="Sprite" parent="Backdrop"]
+position = Vector2( 1784, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileGrassRoadTransitionS" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1272 )
+texture = ExtResource( 23 )
+
+[node name="TileSandRoadNorth" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1528 )
+texture = ExtResource( 22 )
+
+[node name="TileGrassRoadNorth" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 376 )
+texture = ExtResource( 10 )
+
+[node name="TileSandRoadSplitW" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1400 )
+texture = ExtResource( 13 )
+
+[node name="TileSandRoadCornerUl" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1656 )
+texture = ExtResource( 27 )
+
+[node name="TileSandRoadEast" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast3" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadCrossing" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1400 )
+texture = ExtResource( 9 )
+
+[node name="TileSandRoadSplitN" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1656 )
+texture = ExtResource( 7 )
+
+[node name="TileSandRoadNorth2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1528 )
+texture = ExtResource( 22 )
+
+[node name="TileSandRoadEast5" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast6" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileGrassRoadTransitionSDirt" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1272 )
+texture = ExtResource( 18 )
+
+[node name="TileGrassTransitionS2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS3" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileSand10" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1528 )
+texture = ExtResource( 19 )
+
+[node name="TileSand11" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileSand12" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1528 )
+texture = ExtResource( 19 )
+
+[node name="TileGrassTransitionS5" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS6" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileSand13" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1400 )
+texture = ExtResource( 19 )
+
+[node name="TileGrassRoadCornerLr3" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 760 )
+texture = ExtResource( 4 )
+
+[node name="TileGrassRoadEast9" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 760 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast10" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 760 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadCornerLl3" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 760 )
+texture = ExtResource( 12 )
+
+[node name="TileGrassRoadNorth5" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 888 )
+texture = ExtResource( 10 )
+
+[node name="TileSand14" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileSand15" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1656 )
+texture = ExtResource( 19 )
+
+[node name="TileSand16" type="Sprite" parent="Backdrop"]
+position = Vector2( 120, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand17" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileSand18" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileGrassRoadNorth2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 888 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadCornerUr2" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1016 )
+texture = ExtResource( 25 )
+
+[node name="TileGrassRoadCornerUl" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1016 )
+texture = ExtResource( 11 )
+
+[node name="TileGrassRoadEast11" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1016 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast12" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1016 )
+texture = ExtResource( 3 )
+
+[node name="TileGrass23" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 888 )
+texture = ExtResource( 2 )
+
+[node name="TileSand19" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand20" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileGrass24" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 888 )
+texture = ExtResource( 5 )
+
+[node name="TileGrassRoadNorth3" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 504 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadCornerUr3" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 632 )
+texture = ExtResource( 25 )
+
+[node name="TileSand21" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1784 )
+texture = ExtResource( 21 )
+
+[node name="TileSand22" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileSand23" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1784 )
+texture = ExtResource( 19 )
+
+[node name="TileGrassRoadNorth4" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 376 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth6" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 504 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth7" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 632 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth8" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 760 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadCornerLl4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 632 )
+texture = ExtResource( 12 )
+
+[node name="TileGrassRoadEast13" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 632 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadNorth9" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 760 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth10" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 888 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth11" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1016 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth12" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 1144 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth13" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 504 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadSplitW2" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 632 )
+texture = ExtResource( 17 )
+
+[node name="TileGrassRoadNorth14" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 760 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth15" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 888 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth16" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1016 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth17" type="Sprite" parent="Backdrop"]
+position = Vector2( 1656, 1144 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadEast14" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 632 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadCornerUr4" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 632 )
+texture = ExtResource( 25 )
+
+[node name="TileGrassRoadCornerLl5" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 376 )
+texture = ExtResource( 12 )
+
+[node name="TileGrassRoadNorth18" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 504 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadEast15" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 376 )
+texture = ExtResource( 3 )
+
+[node name="TileGrass25" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 760 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass26" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 760 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass27" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 760 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass28" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 888 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass29" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 888 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass30" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 888 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass31" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1016 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass32" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1016 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass33" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1016 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass34" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 1144 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass35" type="Sprite" parent="Backdrop"]
+position = Vector2( 1400, 1144 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass36" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 1144 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass37" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 376 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass38" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 376 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass39" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass40" type="Sprite" parent="Backdrop"]
+position = Vector2( 1144, 504 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass51" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 504 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass52" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass54" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 632 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass55" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 632 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass56" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 376 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass57" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 376 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass58" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass59" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 504 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass60" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 632 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass61" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 632 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass62" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 760 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass63" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 760 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass64" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 888 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass65" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 888 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass66" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1016 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass67" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1016 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass49" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 632 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass50" type="Sprite" parent="Backdrop"]
+position = Vector2( 1272, 504 )
+texture = ExtResource( 5 )
+
+[node name="TileSandRoadEast7" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast8" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadSplitE" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1400 )
+texture = ExtResource( 8 )
+
+[node name="TileGrassRoadTransitionSDirt2" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1272 )
+texture = ExtResource( 18 )
+
+[node name="TileGrassRoadSplitE" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1144 )
+texture = ExtResource( 24 )
+
+[node name="TileGrassRoadNorth19" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1016 )
+texture = ExtResource( 10 )
+
+[node name="TileGrassRoadNorth20" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 888 )
+texture = ExtResource( 10 )
+
+[node name="TileSandRoadSplitN2" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1400 )
+texture = ExtResource( 7 )
+
+[node name="TileSandRoadEast9" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast10" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast11" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1400 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadCornerUr" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1656 )
+texture = ExtResource( 6 )
+
+[node name="TileSandRoadNorth3" type="Sprite" parent="Backdrop"]
+position = Vector2( 248, 1528 )
+texture = ExtResource( 22 )
+
+[node name="TileSandRoadEast12" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast13" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSandRoadEast14" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSand24" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1656 )
+texture = ExtResource( 21 )
+
+[node name="TileSand25" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1656 )
+texture = ExtResource( 21 )
+
+[node name="TileSandRoadEast15" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1656 )
+texture = ExtResource( 15 )
+
+[node name="TileSand26" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1528 )
+texture = ExtResource( 19 )
+
+[node name="TileSand27" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileSand28" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1528 )
+texture = ExtResource( 19 )
+
+[node name="TileSand29" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileSand30" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1528 )
+texture = ExtResource( 19 )
+
+[node name="TileSand31" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1528 )
+texture = ExtResource( 21 )
+
+[node name="TileGrassRoadEast16" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1144 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast17" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1144 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadEast18" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1144 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadSplitS" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1144 )
+texture = ExtResource( 20 )
+
+[node name="TileGrassRoadEast19" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1144 )
+texture = ExtResource( 3 )
+
+[node name="TileGrassRoadTransitionS2" type="Sprite" parent="Backdrop"]
+position = Vector2( 760, 1272 )
+texture = ExtResource( 23 )
+
+[node name="TileGrassTransitionS7" type="Sprite" parent="Backdrop"]
+position = Vector2( 888, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS8" type="Sprite" parent="Backdrop"]
+position = Vector2( 376, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS9" type="Sprite" parent="Backdrop"]
+position = Vector2( 504, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrassTransitionS10" type="Sprite" parent="Backdrop"]
+position = Vector2( 632, 1272 )
+texture = ExtResource( 16 )
+
+[node name="TileGrass68" type="Sprite" parent="Backdrop"]
+position = Vector2( 1016, 1144 )
+texture = ExtResource( 2 )
+
+[node name="TileGrass69" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 376 )
+texture = ExtResource( 5 )
+
+[node name="TileGrass70" type="Sprite" parent="Backdrop"]
+position = Vector2( 1528, 504 )
+texture = ExtResource( 2 )
+
+[node name="Barrier" parent="." instance=ExtResource( 26 )]
+position = Vector2( 1152, 344 )
+
+[node name="Barrier2" parent="." instance=ExtResource( 26 )]
+position = Vector2( 1144, 280 )
+rotation = 0.382227
+
+[node name="Barrier3" parent="." instance=ExtResource( 26 )]
+position = Vector2( 888, 1056 )
+rotation = 0.382227
+scale = Vector2( 1, 1 )
+
+[node name="Barrier4" parent="." instance=ExtResource( 26 )]
+position = Vector2( 896, 1112 )
+rotation = -0.164061
+
+[node name="Barrier5" parent="." instance=ExtResource( 26 )]
+position = Vector2( 640, 1576 )
+rotation = 0.164061
+
+[node name="Barrier6" parent="." instance=ExtResource( 26 )]
+position = Vector2( 640, 1632 )
+rotation = -0.436332
+
+[node name="Barrier7" parent="." instance=ExtResource( 26 )]
+position = Vector2( 896, 1560 )
+
+[node name="Barrier8" parent="." instance=ExtResource( 26 )]
+position = Vector2( 896, 1616 )
+
+[node name="Block" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528, 424 )
+
+[node name="Block2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528, 480 )
+
+[node name="Block3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528, 536 )
+
+[node name="Block4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 528, 592 )
+
+[node name="Block5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 832 )
+
+[node name="Block6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 744, 832 )
+
+[node name="Block7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 800, 832 )
+
+[node name="Block8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 856, 832 )
+
+[node name="Block9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1344, 1112 )
+
+[node name="Block10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1240, 880 )
+
+[node name="Block11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1448, 752 )
+
+[node name="Block12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 960, 456 )

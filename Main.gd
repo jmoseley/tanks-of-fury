@@ -38,6 +38,7 @@ func _on_StartTimer_timeout():
 	$MobTimer.start()
 
 func _on_MobTimer_timeout():
+	return
 	var num_mobs = get_tree().get_nodes_in_group("mobs").size()
 	if num_mobs >= 10:
 		return
@@ -61,9 +62,9 @@ func _on_Player_dead():
 
 func _on_Player_health_changed(damage, new_health):
 	if new_health <= 0:
-		$Player/Camera.add_trauma(1)
+		$Camera.add_trauma(1)
 	else:
-		$Player/Camera.add_trauma(damage * 0.05)
+		$Camera.add_trauma(damage * 0.05)
 
 func _on_Mob_die(age):
 	score += 100

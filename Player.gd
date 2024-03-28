@@ -69,7 +69,7 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 
-	var path : Line2D = get_node("/root/Main/HUD/GhostPath")
+	var path : Line2D = get_node("/root/Main/Controls/GhostPath")
 	if keyboard:
 		path.clear_points()
 	else:

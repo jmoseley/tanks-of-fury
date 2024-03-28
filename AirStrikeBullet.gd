@@ -7,9 +7,9 @@ export var radius = 200
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CollisionShape2D.shape.radius = radius
+	$Explosion.hide()
 	# place this just above the top of the screen, in global coordinates, transformed for the current camera view
 	position.y = (get_viewport().get_canvas_transform().affine_inverse() * Vector2(0, -100)).y
-	$Explosion.hide()
 
 func _process(delta):
 	position += (target - position).normalized() * movement_speed * delta
@@ -20,7 +20,6 @@ func _process(delta):
 func set_target(new_target):
 	target = new_target
 	position.x = target.x
-	position.y = -100
 
 func reached_target():
 	var bodies = get_overlapping_bodies()
@@ -36,7 +35,4 @@ func reached_target():
 			# the velocity is the angle between the target and the position
 			var velocity = (target - position).normalized()
 			body.emit_signal("hit", damage, position, velocity)
-	$Explosion.connect("animation_finished", self, "done_exploding", [], CONNECT_ONESHOT)
-
-func done_exploding():
-	queue_free()
+	$Explosion.connect("animation_finished", self, "queue_free", [], CONNECT_ONESHOT)
