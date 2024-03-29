@@ -4,7 +4,7 @@ export var speed = 300 # How fast the player will move (pixels/sec).
 export var health = 1000
 var screen_size # Size of the game window.
 export var rotation_speed = 5
-export var fire_rate = 5.0
+export var fire_rate = 8.0
 
 signal hit(damage, location, angle)
 signal on_health_changed(damage, health)
@@ -16,7 +16,7 @@ func _ready():
 	$Body.animation = 'green'
 	hide()
 	$Turret.fire_rate = 0
-	$Turret.damage_dealt = 3
+	$Turret.damage_dealt = 10
 	set_health(100)
 
 func _process(_delta):
@@ -24,7 +24,7 @@ func _process(_delta):
 	var min_distance = INF
 	for mob in get_tree().get_nodes_in_group("mobs"):
 		var distance = mob.global_position.distance_to(position)
-		if !nearest_mob || distance < min_distance:
+		if !nearest_mob||distance < min_distance:
 			min_distance = distance
 			nearest_mob = mob
 	if nearest_mob:
@@ -69,23 +69,23 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 
-	var path : Line2D = get_node("/root/Main/Controls/GhostPath")
+	var path: Line2D = get_node("/root/Main/Controls/GhostPath")
 	if keyboard:
 		path.clear_points()
 	else:
 		if path.points.size() > 0:
-			var target = path.points[path.points.size()-1]
+			var target = path.points[path.points.size() - 1]
 			if position.distance_to(target) < 3:
-				path.remove_point(path.points.size()-1)
+				path.remove_point(path.points.size() - 1)
 				if path.points.size() > 0:
-					target = path.points[path.points.size()-1]
+					target = path.points[path.points.size() - 1]
 				else:
 					target = position
 			movement_velocity = (target - position).normalized() * speed
 
 	move_and_slide(movement_velocity + impulse_velocity)
-	if !keyboard && movement_velocity.length() > 0:
-		rotation = lerp_angle(rotation, movement_velocity.angle() - PI/2, 0.2)
+	if !keyboard&&movement_velocity.length() > 0:
+		rotation = lerp_angle(rotation, movement_velocity.angle() - PI / 2, 0.2)
 	movement_velocity = movement_velocity.linear_interpolate(Vector2(), 0.3)
 	impulse_velocity = impulse_velocity.linear_interpolate(Vector2(), 0.1)
 

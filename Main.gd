@@ -70,6 +70,6 @@ func _on_Mob_die(age):
 	score += round(max(10 - age, 0))
 	$HUD.update_score(score)
 
-func _on_Mob_hit(damage):
-	score += damage
+func _on_Mob_hit(damage, _location, _velocity):
+	score += clamp(damage, 0, 100)
 	$HUD.update_score(score)

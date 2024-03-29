@@ -77,7 +77,7 @@ func _physics_process(delta):
 func apply_impulse(direction, force):
 	impulse_velocity += direction.normalized() * force
 
-func _on_Mob_hit(damage, location, velocity):
+func _on_Mob_hit(damage, _location, velocity):
 	apply_impulse(velocity, damage * 10)
 	health -= damage
 	if health <= 0:
