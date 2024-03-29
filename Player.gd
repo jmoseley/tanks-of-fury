@@ -112,6 +112,8 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 func _on_Player_hit(damage, _location, velocity):
+	if health <= 0:
+		return
 	apply_impulse(velocity, damage * 10)
 	decrement_health(damage)
 	if health <= 0:

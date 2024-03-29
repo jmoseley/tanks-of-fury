@@ -78,6 +78,8 @@ func apply_impulse(direction, force):
 	impulse_velocity += direction.normalized() * force
 
 func _on_Mob_hit(damage, _location, velocity):
+	if health <= 0:
+		return
 	apply_impulse(velocity, damage * 10)
 	health -= damage
 	if health <= 0:
