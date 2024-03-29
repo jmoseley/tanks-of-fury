@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/tileGrass1.png" type="Texture" id=2]
@@ -36,6 +36,11 @@ extents = Vector2( 952, 28 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 896, 28 )
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 208, 208, 0, 0, 0, 0, 560, 208, 0, 0, 0, 0, 616, 312, 0, 0, 0, 0, 816, 320, 0, 0, 0, 0, 880, 208, 0, 0, 0, 0, 1568, 208, 0, 0, 0, 0, 1592, 568, 0, 0, 0, 0, 1600, 1208, 0, 0, 0, 0, 1592, 1584, 0, 0, 0, 0, 984, 1720, 0, 0, 0, 0, 616, 1720, 0, 0, 0, 0, 232, 1600, 0, 0, 0, 0, 208, 208 )
+}
 
 [node name="Level" type="Node2D"]
 
@@ -959,3 +964,9 @@ position = Vector2( 1448, 752 )
 
 [node name="Block12" parent="." instance=ExtResource( 1 )]
 position = Vector2( 960, 456 )
+
+[node name="MobSpawnPath" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobSpawnPath"]
+position = Vector2( 208, 208 )

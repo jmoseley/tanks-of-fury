@@ -26,13 +26,13 @@ func _process(delta):
 		var viewport_size = get_viewport().size
 		var camera_position = camera.global_position
 		if last_drag_position.x < 200:
-			camera_position.x -= min(camera_speed * (1 - last_drag_position.x / 200), camera_speed) * delta
+			camera_position.x -= clamp(camera_speed * (1 - last_drag_position.x / 200), 0, camera_speed) * delta
 		if last_drag_position.x > viewport_size.x - 200:
-			camera_position.x += min(camera_speed * (1 - (viewport_size.x - last_drag_position.x) / 200), camera_speed) * delta
+			camera_position.x += clamp(camera_speed * (1 - (viewport_size.x - last_drag_position.x) / 200), 0, camera_speed) * delta
 		if last_drag_position.y < 200:
-			camera_position.y -= min(camera_speed * (1 - last_drag_position.y / 200), camera_speed) * delta
+			camera_position.y -= clamp(camera_speed * (1 - last_drag_position.y / 200), 0, camera_speed) * delta
 		if last_drag_position.y > viewport_size.y - 200:
-			camera_position.y += min(camera_speed * (1 - (viewport_size.y - last_drag_position.y) / 200), camera_speed) * delta
+			camera_position.y += clamp(camera_speed * (1 - (viewport_size.y - last_drag_position.y) / 200), 0, camera_speed) * delta
 		camera.global_position = camera_position
 		$GhostPlayer.position = global_position
 		$GhostPlayer.rotation = lerp_angle($GhostPlayer.rotation, (global_position - last_global_position).angle(), 0.2)
@@ -52,7 +52,7 @@ func _on_PowerupMenu_item_selected(id: String, position: Vector2):
 func _on_PowerupMenu_cancelled():
 	get_node('/root/Main/HUD/PowerupMenu').hide()
 
-export var player_click_radius = 50
+export var player_click_radius = 100
 
 func _input(event):
 	var camera: Camera2D = get_node("/root/Main/Camera")

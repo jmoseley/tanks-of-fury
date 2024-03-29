@@ -11,6 +11,7 @@ var angle = 0
 var rng = RandomNumberGenerator.new()
 
 var time_since_position_change = INF
+var next_position_change = INF
 var target_position = Vector2.ZERO
 var am_firing = true
 var age = 0
@@ -29,6 +30,7 @@ func _ready():
 	angle = rotation
 	speed = rand_range(50.0, 150.0)
 	target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
+	next_position_change = rand_range(1, 5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,15 +38,15 @@ func _process(delta):
 	# if target_position is set, move towards it with a max rotation speed
 	# calculate the angle to the target position
 	time_since_position_change += delta
-	if time_since_position_change > rng.randf_range(1, 5):
+	if time_since_position_change > next_position_change:
 		time_since_position_change = 0
+		next_position_change = rand_range(1, 5)
 		target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
 
-	if !am_firing:
+	if am_firing:
+		$Turret.target_position = get_node("/root/Main/Player").global_position
+	else:
 		$Turret.target_position = Vector2.INF
-		return
-
-	$Turret.target_position = get_node("/root/Main/Player").global_position
 
 func control(delta):
 	if (target_position - position).length() < 100:
@@ -55,13 +57,13 @@ func control(delta):
 
 		if angle_difference > PI:
 			angle_difference -= 2 * PI
-		elif angle_difference < -PI:
+		elif angle_difference < - PI:
 			angle_difference += 2 * PI
-		
+
 		var rotation_dir = 1
 		if angle_difference < 0:
 			rotation_dir = -1
-		
+
 		var rotation_amount = min(abs(angle_difference), rotation_speed * delta)
 		rotation += rotation_dir * rotation_amount
 		movement_velocity = Vector2(0, 1).rotated(rotation).normalized()
@@ -75,9 +77,6 @@ func _physics_process(delta):
 func apply_impulse(direction, force):
 	impulse_velocity += direction.normalized() * force
 
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
-
 func _on_Mob_hit(damage, location, velocity):
 	apply_impulse(velocity, damage * 10)
 	health -= damage
@@ -85,11 +84,8 @@ func _on_Mob_hit(damage, location, velocity):
 		$Body.scale = Vector2(2, 2)
 		$Body.play("die")
 		$Turret.hide()
-		$Body.connect("animation_finished", self, "_on_Body_animation_finished")
+		$Body.connect("animation_finished", self, "queue_free", [], CONNECT_ONESHOT)
 		emit_signal("die", age)
-
-func _on_Body_animation_finished():
-	queue_free()
 
 func stop_firing():
 	$Turret.fire_rate = 0

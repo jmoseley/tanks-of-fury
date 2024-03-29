@@ -1,6 +1,6 @@
 extends Node2D
 
-export var recharge_time = 10000.0
+export var recharge_time = 5000.0
 export(PackedScene) var bullet_scene
 
 var has_shot = false

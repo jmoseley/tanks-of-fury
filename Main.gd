@@ -38,7 +38,6 @@ func _on_StartTimer_timeout():
 	$MobTimer.start()
 
 func _on_MobTimer_timeout():
-	return
 	var num_mobs = get_tree().get_nodes_in_group("mobs").size()
 	if num_mobs >= 10:
 		return
@@ -46,7 +45,7 @@ func _on_MobTimer_timeout():
 	var mob = mob_scene.instance()
 
 	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
+	var mob_spawn_location = get_node("Level/MobSpawnPath/MobSpawnLocation")
 	mob_spawn_location.offset = randi()
 
 	# Set the mob's position to a random location.
