@@ -21,6 +21,7 @@ func game_over():
 	$MobTimer.stop()
 	$HUD.show_game_over()
 	game_started = false
+	$Controls/GhostPath.clear_points()
 
 func new_game():
 	get_tree().call_group("mobs", "queue_free")

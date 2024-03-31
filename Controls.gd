@@ -60,6 +60,8 @@ func _on_PowerupMenu_cancelled():
 export var player_click_radius = 100
 
 func _input(event):
+	if get_node("/root/Main/Player").health <= 0:
+		return
 	var camera: Camera2D = get_node("/root/Main/Camera")
 	# Mouse in viewport coordinates.
 	if event is InputEventScreenTouch or (event is InputEventMouseButton and event.button_index == BUTTON_LEFT):

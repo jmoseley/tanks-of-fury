@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed = 300 # How fast the player will move (pixels/sec).
-export var health = 1000
+export var health = 100
 var screen_size # Size of the game window.
 export var rotation_speed = 5
 export var fire_rate = 8.0
@@ -110,6 +110,7 @@ func start(pos):
 	$Turret.rotation = 0
 	$Body.animation = 'green'
 	$CollisionShape2D.disabled = false
+	get_node("/root/Main/Controls/")
 
 func _on_Player_hit(damage, _location, velocity):
 	if health <= 0:
