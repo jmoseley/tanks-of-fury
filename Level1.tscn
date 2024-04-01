@@ -47,7 +47,7 @@ _data = {
 [node name="Border" type="Node2D" parent="."]
 position = Vector2( -56, -56 )
 
-[node name="Top" type="StaticBody2D" parent="Border"]
+[node name="Top" type="StaticBody2D" parent="Border" groups=["block"]]
 __meta__ = {
 "_edit_group_": true
 }
@@ -62,7 +62,7 @@ texture = ExtResource( 14 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1904, 56 )
 
-[node name="Bottom" type="StaticBody2D" parent="Border"]
+[node name="Bottom" type="StaticBody2D" parent="Border" groups=["block"]]
 position = Vector2( 0, 1848 )
 __meta__ = {
 "_edit_group_": true
@@ -78,7 +78,7 @@ texture = ExtResource( 14 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1904, 56 )
 
-[node name="Left" type="StaticBody2D" parent="Border"]
+[node name="Left" type="StaticBody2D" parent="Border" groups=["block"]]
 position = Vector2( 56, 56 )
 rotation = 1.5708
 __meta__ = {
@@ -95,7 +95,7 @@ texture = ExtResource( 14 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1792, 56 )
 
-[node name="Right" type="StaticBody2D" parent="Border"]
+[node name="Right" type="StaticBody2D" parent="Border" groups=["block"]]
 position = Vector2( 1904, 56 )
 rotation = 1.5708
 __meta__ = {

@@ -12,9 +12,6 @@ func _ready():
 func _process(delta):
 	position += velocity * delta
 
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
-
 func _on_Bullet_body_entered(body):
 	# if this is an enemy, emit a signal to it
 	if body.is_in_group(target_group):
