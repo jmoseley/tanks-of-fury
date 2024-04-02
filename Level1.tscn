@@ -1,41 +1,116 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
-[ext_resource path="res://art/tileGrass1.png" type="Texture" id=2]
-[ext_resource path="res://art/tileGrass_roadEast.png" type="Texture" id=3]
-[ext_resource path="res://art/tileGrass_roadCornerLR.png" type="Texture" id=4]
-[ext_resource path="res://art/tileGrass2.png" type="Texture" id=5]
-[ext_resource path="res://art/tileSand_roadCornerUR.png" type="Texture" id=6]
-[ext_resource path="res://art/tileSand_roadSplitN.png" type="Texture" id=7]
-[ext_resource path="res://art/tileSand_roadSplitE.png" type="Texture" id=8]
-[ext_resource path="res://art/tileSand_roadCrossing.png" type="Texture" id=9]
-[ext_resource path="res://art/tileGrass_roadNorth.png" type="Texture" id=10]
-[ext_resource path="res://art/tileGrass_roadCornerUL.png" type="Texture" id=11]
-[ext_resource path="res://art/tileGrass_roadCornerLL.png" type="Texture" id=12]
-[ext_resource path="res://art/tileSand_roadSplitW.png" type="Texture" id=13]
-[ext_resource path="res://art/barricadeMetal.png" type="Texture" id=14]
-[ext_resource path="res://art/tileSand_roadEast.png" type="Texture" id=15]
-[ext_resource path="res://art/tileGrass_transitionS.png" type="Texture" id=16]
-[ext_resource path="res://art/tileGrass_roadSplitW.png" type="Texture" id=17]
-[ext_resource path="res://art/tileGrass_roadTransitionS_dirt.png" type="Texture" id=18]
-[ext_resource path="res://art/tileSand1.png" type="Texture" id=19]
-[ext_resource path="res://art/tileGrass_roadSplitS.png" type="Texture" id=20]
-[ext_resource path="res://art/tileSand2.png" type="Texture" id=21]
-[ext_resource path="res://art/tileSand_roadNorth.png" type="Texture" id=22]
-[ext_resource path="res://art/tileGrass_roadTransitionS.png" type="Texture" id=23]
-[ext_resource path="res://art/tileGrass_roadSplitE.png" type="Texture" id=24]
-[ext_resource path="res://art/tileGrass_roadCornerUR.png" type="Texture" id=25]
 [ext_resource path="res://Barrier.tscn" type="PackedScene" id=26]
-[ext_resource path="res://art/tileSand_roadCornerUL.png" type="Texture" id=27]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 952, 28 )
+
+[sub_resource type="StreamTexture" id=5]
+flags = 6
+load_path = "res://.import/barricadeMetal.png-c74c3a73fb572721cbbbc3cb420232d8.stex"
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 952, 28 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 896, 28 )
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://.import/tileGrass1.png-a4e4e31ba7404f3c9e8e792d4afe6aec.stex"
+
+[sub_resource type="StreamTexture" id=7]
+flags = 4
+load_path = "res://.import/tileGrass2.png-1ae128a66d2a12622291c2b3ae915ed0.stex"
+
+[sub_resource type="StreamTexture" id=8]
+flags = 4
+load_path = "res://.import/tileGrass_roadCornerLR.png-94600511b6f2ba51e37e24d02a41ee44.stex"
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/tileGrass_roadEast.png-d78e289d155a4f43acf170471b5c1f0d.stex"
+
+[sub_resource type="StreamTexture" id=10]
+flags = 4
+load_path = "res://.import/tileGrass_roadCornerLL.png-72f5961372ab56a9d3372ccdb80213e9.stex"
+
+[sub_resource type="StreamTexture" id=11]
+flags = 4
+load_path = "res://.import/tileGrass_roadCornerUR.png-269bd91dc4ef2d4a452bd02ddbcbbcf3.stex"
+
+[sub_resource type="StreamTexture" id=12]
+flags = 4
+load_path = "res://.import/tileGrass_roadSplitW.png-9e6e222be43aa30ef7de81ef29cbd774.stex"
+
+[sub_resource type="StreamTexture" id=13]
+flags = 4
+load_path = "res://.import/tileSand2.png-7ba530a038d2c3dcccaaaee85300aea7.stex"
+
+[sub_resource type="StreamTexture" id=14]
+flags = 4
+load_path = "res://.import/tileSand1.png-ac444ffa3e2465b29acf46ec80cf8a10.stex"
+
+[sub_resource type="StreamTexture" id=15]
+flags = 4
+load_path = "res://.import/tileGrass_transitionS.png-f6121bae71b7a69db2e9713c64f26cb3.stex"
+
+[sub_resource type="StreamTexture" id=16]
+flags = 4
+load_path = "res://.import/tileGrass_roadTransitionS.png-287f0ced22b9e68e467e584590ceebcc.stex"
+
+[sub_resource type="StreamTexture" id=17]
+flags = 4
+load_path = "res://.import/tileSand_roadNorth.png-d5f0054c5ebcf64b20265d92dfbff37c.stex"
+
+[sub_resource type="StreamTexture" id=18]
+flags = 4
+load_path = "res://.import/tileGrass_roadNorth.png-69cb721eed7b17ecfae3984d5befd30f.stex"
+
+[sub_resource type="StreamTexture" id=19]
+flags = 4
+load_path = "res://.import/tileSand_roadSplitW.png-66759a38ef9f37c16794258fcd75bbbd.stex"
+
+[sub_resource type="StreamTexture" id=20]
+flags = 4
+load_path = "res://.import/tileSand_roadCornerUL.png-f3bd872a9258cf8f4026080d83145810.stex"
+
+[sub_resource type="StreamTexture" id=21]
+flags = 4
+load_path = "res://.import/tileSand_roadEast.png-0bb38eb298c350e0ba04e5ab34596717.stex"
+
+[sub_resource type="StreamTexture" id=22]
+flags = 4
+load_path = "res://.import/tileSand_roadCrossing.png-5ff61ddacba9c0046bd67e103ee0f26a.stex"
+
+[sub_resource type="StreamTexture" id=23]
+flags = 4
+load_path = "res://.import/tileSand_roadSplitN.png-479961b1f98c0a556828f07c1f61ce14.stex"
+
+[sub_resource type="StreamTexture" id=24]
+flags = 4
+load_path = "res://.import/tileGrass_roadTransitionS_dirt.png-2347afe61183f6de5e29362cfe8c6874.stex"
+
+[sub_resource type="StreamTexture" id=25]
+flags = 4
+load_path = "res://.import/tileGrass_roadCornerUL.png-60a2cc4ece8dc524aba992ee081cf62e.stex"
+
+[sub_resource type="StreamTexture" id=26]
+flags = 4
+load_path = "res://.import/tileSand_roadSplitE.png-1da9fa3be35d2906c988d805fe09432f.stex"
+
+[sub_resource type="StreamTexture" id=27]
+flags = 4
+load_path = "res://.import/tileGrass_roadSplitE.png-6da623ec7f5213d5c4a4da8b99e0037e.stex"
+
+[sub_resource type="StreamTexture" id=28]
+flags = 4
+load_path = "res://.import/tileSand_roadCornerUR.png-662feb08d30dc1b987387a9b15dc87c0.stex"
+
+[sub_resource type="StreamTexture" id=29]
+flags = 4
+load_path = "res://.import/tileGrass_roadSplitS.png-990839accb74e2471a1cc63a1ccb2815.stex"
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -58,7 +133,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Border/Top"]
 position = Vector2( 952, 28 )
-texture = ExtResource( 14 )
+texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1904, 56 )
 
@@ -74,7 +149,7 @@ shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Border/Bottom"]
 position = Vector2( 952, 28 )
-texture = ExtResource( 14 )
+texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1904, 56 )
 
@@ -91,7 +166,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Border/Left"]
 position = Vector2( 896, 28 )
-texture = ExtResource( 14 )
+texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1792, 56 )
 
@@ -108,7 +183,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Border/Right"]
 position = Vector2( 896, 28 )
-texture = ExtResource( 14 )
+texture = SubResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1792, 56 )
 
@@ -117,787 +192,787 @@ position = Vector2( -56, -56 )
 
 [node name="TileGrass1" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass2" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass15" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 248 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass16" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 376 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass17" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass18" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 632 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass19" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 760 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass20" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 888 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass21" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1016 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass22" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1144 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass41" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 248 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass42" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 376 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass43" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass44" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 632 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass45" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 760 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass46" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 888 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass47" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1016 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass48" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1144 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass3" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass4" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass5" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass6" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass7" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass8" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass9" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass10" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass11" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass12" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass13" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 120 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass14" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 120 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrassRoadCornerLr" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 248 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 
 [node name="TileGrassRoadEast" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast2" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadCornerLl" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 248 )
-texture = ExtResource( 12 )
+texture = SubResource( 10 )
 
 [node name="TileGrassRoadCornerUr" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 376 )
-texture = ExtResource( 25 )
+texture = SubResource( 11 )
 
 [node name="TileGrassRoadEast3" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 376 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadSplitW" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 376 )
-texture = ExtResource( 17 )
+texture = SubResource( 12 )
 
 [node name="TileGrassRoadCornerLr2" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 248 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 
 [node name="TileGrass53" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 248 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrassRoadEast4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast5" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast6" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast7" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast8" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 248 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadCornerLl2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 248 )
-texture = ExtResource( 12 )
+texture = SubResource( 10 )
 
 [node name="TileSand2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand3" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand5" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand6" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand7" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand8" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1656 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileGrassTransitionS" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileSand1" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1400 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand9" type="Sprite" parent="Backdrop"]
 position = Vector2( 1784, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileGrassRoadTransitionS" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1272 )
-texture = ExtResource( 23 )
+texture = SubResource( 16 )
 
 [node name="TileSandRoadNorth" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1528 )
-texture = ExtResource( 22 )
+texture = SubResource( 17 )
 
 [node name="TileGrassRoadNorth" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 376 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileSandRoadSplitW" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1400 )
-texture = ExtResource( 13 )
+texture = SubResource( 19 )
 
 [node name="TileSandRoadCornerUl" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1656 )
-texture = ExtResource( 27 )
+texture = SubResource( 20 )
 
 [node name="TileSandRoadEast" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast3" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadCrossing" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1400 )
-texture = ExtResource( 9 )
+texture = SubResource( 22 )
 
 [node name="TileSandRoadSplitN" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1656 )
-texture = ExtResource( 7 )
+texture = SubResource( 23 )
 
 [node name="TileSandRoadNorth2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1528 )
-texture = ExtResource( 22 )
+texture = SubResource( 17 )
 
 [node name="TileSandRoadEast5" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast6" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileGrassRoadTransitionSDirt" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1272 )
-texture = ExtResource( 18 )
+texture = SubResource( 24 )
 
 [node name="TileGrassTransitionS2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS3" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileSand10" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1528 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand11" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand12" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1528 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileGrassTransitionS5" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS6" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileSand13" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1400 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileGrassRoadCornerLr3" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 760 )
-texture = ExtResource( 4 )
+texture = SubResource( 8 )
 
 [node name="TileGrassRoadEast9" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 760 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast10" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 760 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadCornerLl3" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 760 )
-texture = ExtResource( 12 )
+texture = SubResource( 10 )
 
 [node name="TileGrassRoadNorth5" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 888 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileSand14" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand15" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1656 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand16" type="Sprite" parent="Backdrop"]
 position = Vector2( 120, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand17" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand18" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileGrassRoadNorth2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 888 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadCornerUr2" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1016 )
-texture = ExtResource( 25 )
+texture = SubResource( 11 )
 
 [node name="TileGrassRoadCornerUl" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1016 )
-texture = ExtResource( 11 )
+texture = SubResource( 25 )
 
 [node name="TileGrassRoadEast11" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1016 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast12" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1016 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrass23" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 888 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileSand19" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand20" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileGrass24" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 888 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrassRoadNorth3" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 504 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadCornerUr3" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 632 )
-texture = ExtResource( 25 )
+texture = SubResource( 11 )
 
 [node name="TileSand21" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1784 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand22" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand23" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1784 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileGrassRoadNorth4" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 376 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth6" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 504 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth7" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 632 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth8" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 760 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadCornerLl4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 632 )
-texture = ExtResource( 12 )
+texture = SubResource( 10 )
 
 [node name="TileGrassRoadEast13" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 632 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadNorth9" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 760 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth10" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 888 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth11" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1016 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth12" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 1144 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth13" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 504 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadSplitW2" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 632 )
-texture = ExtResource( 17 )
+texture = SubResource( 12 )
 
 [node name="TileGrassRoadNorth14" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 760 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth15" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 888 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth16" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1016 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth17" type="Sprite" parent="Backdrop"]
 position = Vector2( 1656, 1144 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadEast14" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 632 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadCornerUr4" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 632 )
-texture = ExtResource( 25 )
+texture = SubResource( 11 )
 
 [node name="TileGrassRoadCornerLl5" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 376 )
-texture = ExtResource( 12 )
+texture = SubResource( 10 )
 
 [node name="TileGrassRoadNorth18" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 504 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadEast15" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 376 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrass25" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 760 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass26" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 760 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass27" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 760 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass28" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 888 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass29" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 888 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass30" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 888 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass31" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1016 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass32" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1016 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass33" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1016 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass34" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 1144 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass35" type="Sprite" parent="Backdrop"]
 position = Vector2( 1400, 1144 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass36" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 1144 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass37" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 376 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass38" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 376 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass39" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass40" type="Sprite" parent="Backdrop"]
 position = Vector2( 1144, 504 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass51" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 504 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass52" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass54" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 632 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass55" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 632 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass56" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 376 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass57" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 376 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass58" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass59" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 504 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass60" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 632 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass61" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 632 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass62" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 760 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass63" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 760 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass64" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 888 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass65" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 888 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass66" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1016 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass67" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1016 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass49" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 632 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass50" type="Sprite" parent="Backdrop"]
 position = Vector2( 1272, 504 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileSandRoadEast7" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast8" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadSplitE" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1400 )
-texture = ExtResource( 8 )
+texture = SubResource( 26 )
 
 [node name="TileGrassRoadTransitionSDirt2" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1272 )
-texture = ExtResource( 18 )
+texture = SubResource( 24 )
 
 [node name="TileGrassRoadSplitE" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1144 )
-texture = ExtResource( 24 )
+texture = SubResource( 27 )
 
 [node name="TileGrassRoadNorth19" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1016 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileGrassRoadNorth20" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 888 )
-texture = ExtResource( 10 )
+texture = SubResource( 18 )
 
 [node name="TileSandRoadSplitN2" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1400 )
-texture = ExtResource( 7 )
+texture = SubResource( 23 )
 
 [node name="TileSandRoadEast9" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast10" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast11" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1400 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadCornerUr" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1656 )
-texture = ExtResource( 6 )
+texture = SubResource( 28 )
 
 [node name="TileSandRoadNorth3" type="Sprite" parent="Backdrop"]
 position = Vector2( 248, 1528 )
-texture = ExtResource( 22 )
+texture = SubResource( 17 )
 
 [node name="TileSandRoadEast12" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast13" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSandRoadEast14" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSand24" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1656 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand25" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1656 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSandRoadEast15" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1656 )
-texture = ExtResource( 15 )
+texture = SubResource( 21 )
 
 [node name="TileSand26" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1528 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand27" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand28" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1528 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand29" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileSand30" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1528 )
-texture = ExtResource( 19 )
+texture = SubResource( 14 )
 
 [node name="TileSand31" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1528 )
-texture = ExtResource( 21 )
+texture = SubResource( 13 )
 
 [node name="TileGrassRoadEast16" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1144 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast17" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1144 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadEast18" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1144 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadSplitS" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1144 )
-texture = ExtResource( 20 )
+texture = SubResource( 29 )
 
 [node name="TileGrassRoadEast19" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1144 )
-texture = ExtResource( 3 )
+texture = SubResource( 9 )
 
 [node name="TileGrassRoadTransitionS2" type="Sprite" parent="Backdrop"]
 position = Vector2( 760, 1272 )
-texture = ExtResource( 23 )
+texture = SubResource( 16 )
 
 [node name="TileGrassTransitionS7" type="Sprite" parent="Backdrop"]
 position = Vector2( 888, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS8" type="Sprite" parent="Backdrop"]
 position = Vector2( 376, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS9" type="Sprite" parent="Backdrop"]
 position = Vector2( 504, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrassTransitionS10" type="Sprite" parent="Backdrop"]
 position = Vector2( 632, 1272 )
-texture = ExtResource( 16 )
+texture = SubResource( 15 )
 
 [node name="TileGrass68" type="Sprite" parent="Backdrop"]
 position = Vector2( 1016, 1144 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="TileGrass69" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 376 )
-texture = ExtResource( 5 )
+texture = SubResource( 7 )
 
 [node name="TileGrass70" type="Sprite" parent="Backdrop"]
 position = Vector2( 1528, 504 )
-texture = ExtResource( 2 )
+texture = SubResource( 6 )
 
 [node name="Barrier" parent="." instance=ExtResource( 26 )]
 position = Vector2( 1152, 344 )

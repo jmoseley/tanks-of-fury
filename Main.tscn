@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -8,11 +8,10 @@
 [ext_resource path="res://HUD.gd" type="Script" id=6]
 [ext_resource path="res://pressing.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Camera.gd" type="Script" id=8]
-[ext_resource path="res://Level1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://art/main_ship/Main Ship - Base - Full health.png" type="Texture" id=9]
 [ext_resource path="res://Controls.gd" type="Script" id=10]
 [ext_resource path="res://AirStrike.tscn" type="PackedScene" id=11]
-[ext_resource path="res://art/tank_green.png" type="Texture" id=12]
-[ext_resource path="res://art/dotted-line.png" type="Texture" id=13]
+[ext_resource path="res://art/background/Space_Stars5.png" type="Texture" id=12]
 [ext_resource path="res://addons/RadialMenu/RadialMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://addons/RadialMenu/light_default_theme.tres" type="Theme" id=15]
 
@@ -46,8 +45,17 @@ default_font = SubResource( 12 )
 ProgressBar/styles/bg = SubResource( 10 )
 ProgressBar/styles/fg = SubResource( 11 )
 
+[sub_resource type="StreamTexture" id=14]
+flags = 6
+load_path = "res://.import/dotted-line.png-3f728cf8d59a2168f2f9ebb299539b88.stex"
+
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 32, 28 )
+
+[sub_resource type="Curve2D" id=15]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 768, -64, 0, 0, 0, 0, 768, 1352, 0, 0, 0, 0, -64, 1352, 0, 0, 0, 0, -64, -56, 0, 0, 0, 0, -64, -56, 0, 0, 0, 0, -64, -64 )
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -139,14 +147,8 @@ center_radius = 0
 circle_coverage = 0.2
 default_theme = ExtResource( 15 )
 
-[node name="Level" parent="." instance=ExtResource( 9 )]
-
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-limit_left = 0
-limit_top = 0
-limit_right = 1792
-limit_bottom = 1792
 limit_smoothed = true
 smoothing_enabled = true
 script = ExtResource( 8 )
@@ -173,8 +175,9 @@ pause_mode = 2
 script = ExtResource( 10 )
 
 [node name="GhostPath" type="Line2D" parent="Controls"]
+width = 5.0
 default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 13 )
+texture = SubResource( 14 )
 texture_mode = 1
 
 [node name="GhostPlayer" type="Area2D" parent="Controls"]
@@ -185,9 +188,28 @@ position = Vector2( 0, -4 )
 shape = SubResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Controls/GhostPlayer"]
-rotation = -1.5708
-scale = Vector2( 0.75, 0.75 )
+rotation = 1.5708
+texture = ExtResource( 9 )
+
+[node name="MobSpawnPath" type="Path2D" parent="."]
+curve = SubResource( 15 )
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobSpawnPath"]
+position = Vector2( -64, -64 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 360, 640 )
+transform = Transform2D( 1, 0, 0, 1, 360, 640 )
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Space" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 5, 5 )
 texture = ExtResource( 12 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2160, 3840 )
 
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_StartButton_pressed"]

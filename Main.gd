@@ -9,7 +9,6 @@ var game_started = false
 func _ready():
 	randomize()
 	$HUD.show_message("Ready?")
-	$Level.hide()
 	new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +32,6 @@ func new_game():
 	$HUD.show_message("Go!")
 	game_started = true
 	$HUD.start()
-	$Level.show()
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
@@ -46,7 +44,7 @@ func _on_MobTimer_timeout():
 	var mob = mob_scene.instance()
 
 	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node("Level/MobSpawnPath/MobSpawnLocation")
+	var mob_spawn_location = get_node("MobSpawnPath/MobSpawnLocation")
 	mob_spawn_location.offset = randi()
 
 	# Set the mob's position to a random location.

@@ -1,10 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://art/barricadeWood.png" type="Texture" id=1]
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/barricadeWood.png-21fb668cd4f3cb5709eb13e8338b8617.stex"
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0

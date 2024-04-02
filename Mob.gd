@@ -3,6 +3,9 @@ extends KinematicBody2D
 export var health = 100
 export var rotation_speed = 3
 export var speed = 0
+export(PackedScene) var bullet_scene
+export var bullet_speed = 400
+export var bullet_damage = 10
 
 signal hit(damage, location, velocity)
 signal die(age)
@@ -13,7 +16,6 @@ var rng = RandomNumberGenerator.new()
 var time_since_position_change = INF
 var next_position_change = INF
 var target_position = Vector2.ZERO
-var am_firing = true
 var age = 0
 var movement_velocity = Vector2.ZERO
 var impulse_velocity = Vector2.ZERO
@@ -21,12 +23,6 @@ var impulse_velocity = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("mobs")
-	var mob_types = $Body.frames.get_animation_names()
-	var animation = mob_types[randi() % mob_types.size()]
-	while animation == "die":
-		animation = mob_types[randi() % mob_types.size()]
-	$Body.animation = animation
-	$Turret/Turret.animation = animation
 	angle = rotation
 	speed = rand_range(50.0, 150.0)
 	target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
@@ -43,12 +39,10 @@ func _process(delta):
 		next_position_change = rand_range(1, 5)
 		target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
 
-	if am_firing:
-		$Turret.target_position = get_node("/root/Main/Player").global_position
-	else:
-		$Turret.target_position = Vector2.INF
-
 func control(delta):
+	if health <= 0:
+		movement_velocity = Vector2.ZERO
+		return
 	if (target_position - position).length() < 100:
 		target_position = Vector2.INF
 	else:
@@ -83,12 +77,29 @@ func _on_Mob_hit(damage, _location, velocity):
 	apply_impulse(velocity, damage * 10)
 	health -= damage
 	if health <= 0:
-		$Body.scale = Vector2(2, 2)
+		$ShootTimer.stop()
 		$Body.play("die")
-		$Turret.hide()
 		$Body.connect("animation_finished", self, "queue_free", [], CONNECT_ONESHOT)
+		$CollisionShape2D.set_deferred("disabled", true)
 		emit_signal("die", age)
 
 func stop_firing():
-	$Turret.fire_rate = 0
-	am_firing = false
+	$ShootTimer.stop()
+
+func shoot():
+	# Create a new instance of the Bullet scene.
+	var bullet = bullet_scene.instance()
+
+	# Set the bullet's position to the turret's position.
+	bullet.position = global_position
+	# Set the bullet's direction to the turret's rotation.
+	bullet.rotation = rotation + get_angle_to(get_node("../Player").global_position) - PI / 2
+	bullet.velocity = Vector2(0, 1).rotated(bullet.rotation).normalized() * bullet_speed
+	bullet.damage = bullet_damage
+	bullet.target_group = "player"
+
+	# Add the bullet to the Main scene.
+	get_tree().get_root().add_child(bullet)
+
+func _on_ShootTimer_timeout():
+	shoot()

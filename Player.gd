@@ -5,35 +5,36 @@ export var health = 100
 var screen_size # Size of the game window.
 export var rotation_speed = 5
 export var fire_rate = 8.0
+export(PackedScene) var bullet_scene
+export var bullet_speed = 800
+export var bullet_damage = 10
 
 signal hit(damage, location, angle)
 signal on_health_changed(damage, health)
 signal dead
 
+var nearest_mob = null
+
 func _ready():
 	screen_size = get_viewport_rect().size
-	$Turret/Turret.animation = 'green'
-	$Body.animation = 'green'
 	hide()
-	$Turret.fire_rate = 0
-	$Turret.damage_dealt = 10
-	set_health(100)
+	set_health(1000)
 
 func _process(_delta):
-	var nearest_mob = null
 	var min_distance = INF
+	nearest_mob = null
 	for mob in get_tree().get_nodes_in_group("mobs"):
 		var distance = mob.global_position.distance_to(position)
+		if mob.health <= 0:
+			continue
 		if !nearest_mob||distance < min_distance:
 			min_distance = distance
 			nearest_mob = mob
 	if nearest_mob:
-		# change the angle of the turret to aim at the nearest enemy, with a maximum rotation speed
-		$Turret.fire_rate = fire_rate
-		$Turret.target_position = nearest_mob.global_position
+		if $ShootTimer.is_stopped():
+			$ShootTimer.start()
 	else:
-		$Turret.fire_rate = 0
-		$Turret.target_position = Vector2.INF
+		$ShootTimer.stop()
 
 var movement_velocity = Vector2()
 var is_reversing = false
@@ -105,10 +106,8 @@ func start(pos):
 	rotation = 0
 	set_health(100)
 	show()
-	$Turret.show()
+	$Body.play('base')
 	rotation = PI
-	$Turret.rotation = 0
-	$Body.animation = 'green'
 	$CollisionShape2D.disabled = false
 	get_node("/root/Main/Controls/")
 
@@ -118,14 +117,12 @@ func _on_Player_hit(damage, _location, velocity):
 	apply_impulse(velocity, damage * 10)
 	decrement_health(damage)
 	if health <= 0:
+		$ShootTimer.stop()
 		rotation = 0
 		movement_velocity = Vector2()
 		impulse_velocity = Vector2()
-		$Body.animation = 'die'
-		$Body.scale = Vector2(2, 2)
-		$Body.play()
+		$Body.play('die')
 		$Body.connect("animation_finished", self, "_on_Body_animation_finished", [], CONNECT_ONESHOT)
-		$Turret.hide()
 		$CollisionShape2D.set_deferred("disabled", true)
 
 func _on_Body_animation_finished():
@@ -136,3 +133,21 @@ func _on_Body_animation_finished():
 
 func crate_acquired():
 	pass
+
+func shoot():
+	# Create a new instance of the Bullet scene.
+	var bullet = bullet_scene.instance()
+
+	# Set the bullet's position to the turret's position.
+	bullet.position = global_position
+	# Set the bullet's direction to the turret's rotation.
+	bullet.rotation = rotation + get_angle_to(nearest_mob.global_position) - PI / 2
+	bullet.velocity = Vector2(0, 1).rotated(bullet.rotation).normalized() * bullet_speed
+	bullet.damage = bullet_damage
+	bullet.target_group = "mobs"
+
+	# Add the bullet to the Main scene.
+	get_tree().get_root().add_child(bullet)
+
+func _on_ShootTimer_timeout():
+	shoot()

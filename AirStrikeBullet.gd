@@ -23,7 +23,7 @@ func set_target(new_target):
 
 func reached_target():
 	var bodies = get_overlapping_bodies()
-	$RocketBody.hide()
+	$MissileBody.hide()
 	$Explosion.show()
 	$Explosion.play()
 	for body in bodies:

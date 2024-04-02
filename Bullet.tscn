@@ -1,74 +1,65 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
+[ext_resource path="res://art/weapons/Main ship weapon - Projectile - Rocket.png" type="Texture" id=1]
 [ext_resource path="res://Bullet.gd" type="Script" id=2]
-
-[sub_resource type="StreamTexture" id=9]
-flags = 4
-load_path = "res://.import/bulletBlue1_outline.png-1d5e624735a560e128a6d839eaad04ca.stex"
-
-[sub_resource type="StreamTexture" id=10]
-flags = 4
-load_path = "res://.import/Retro Impact Effect Pack 3 A.png-785c9ba1820ea8d7a0ce1aa3603948c7.stex"
+[ext_resource path="res://art/effects/Retro Impact Effect Pack 4 A.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 0, 672, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 32, 672, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 64, 672, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 96, 672, 32, 32 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 128, 672, 32, 32 )
+atlas = ExtResource( 3 )
+region = Rect2( 32, 192, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = SubResource( 10 )
-region = Rect2( 160, 672, 32, 32 )
+atlas = ExtResource( 3 )
+region = Rect2( 64, 192, 32, 32 )
 
-[sub_resource type="StreamTexture" id=11]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
-load_path = "res://.import/bulletGreen1_outline.png-1a90f902cf7b676b6dc12fd47741ba5d.stex"
+atlas = ExtResource( 3 )
+region = Rect2( 96, 192, 32, 32 )
 
-[sub_resource type="StreamTexture" id=12]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
-load_path = "res://.import/bulletRed1_outline.png-e3d8da6ef66ac8da4ed86a9786d47022.stex"
+atlas = ExtResource( 3 )
+region = Rect2( 128, 192, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 160, 192, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "blue",
-"speed": 5.0
+"name": "default",
+"speed": 15.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": false,
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
 "name": "explosion",
-"speed": 20.0
-}, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "green",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 12 ) ],
-"loop": true,
-"name": "red",
-"speed": 5.0
+"speed": 30.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -82,8 +73,8 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = 3.14159
+scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "blue"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
