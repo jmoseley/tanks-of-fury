@@ -16,4 +16,4 @@ func shoot(position):
 	var bullet = bullet_scene.instance()
 	bullet.set_target(position)
 	bullet.look_at(position)
-	get_tree().get_root().add_child(bullet)
+	get_node("/root/Main/Projectiles").add_child(bullet)

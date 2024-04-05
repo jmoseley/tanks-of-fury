@@ -20,13 +20,13 @@ func game_over():
 	$MobTimer.stop()
 	$HUD.show_game_over()
 	game_started = false
-	$Controls/GhostPath.clear_points()
+	$Characters/GhostPath.clear_points()
 
 func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("bullets", "queue_free")
 	score = 0
-	$Player.start($StartPosition.position)
+	$Characters/Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Go!")
@@ -53,7 +53,7 @@ func _on_MobTimer_timeout():
 	mob.connect("hit", self, "_on_Mob_hit")
 
 	# Spawn the mob by adding it to the Main scene.
-	add_child(mob)
+	$Characters.add_child(mob)
 
 func _on_Player_dead():
 	game_over()

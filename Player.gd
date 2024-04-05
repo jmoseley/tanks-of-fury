@@ -19,6 +19,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 	set_health(1000)
+	path = get_node("/root/Main/Characters/GhostPath")
 
 func _process(_delta):
 	var min_distance = INF
@@ -39,6 +40,7 @@ func _process(_delta):
 var movement_velocity = Vector2()
 var is_reversing = false
 var impulse_velocity = Vector2()
+var path: Line2D = null
 
 func control(delta):
 	if health <= 0:
@@ -70,7 +72,6 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 
-	var path: Line2D = get_node("/root/Main/Controls/GhostPath")
 	if keyboard:
 		path.clear_points()
 	else:
@@ -109,7 +110,6 @@ func start(pos):
 	$Body.play('base')
 	rotation = PI
 	$CollisionShape2D.disabled = false
-	get_node("/root/Main/Controls/")
 
 func _on_Player_hit(damage, _location, velocity):
 	if health <= 0:
@@ -146,8 +146,7 @@ func shoot():
 	bullet.damage = bullet_damage
 	bullet.target_group = "mobs"
 
-	# Add the bullet to the Main scene.
-	get_tree().get_root().add_child(bullet)
+	get_node("/root/Main/Projectiles").add_child(bullet)
 
 func _on_ShootTimer_timeout():
 	shoot()

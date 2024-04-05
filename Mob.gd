@@ -98,8 +98,7 @@ func shoot():
 	bullet.damage = bullet_damage
 	bullet.target_group = "player"
 
-	# Add the bullet to the Main scene.
-	get_tree().get_root().add_child(bullet)
+	get_node("/root/Main/Projectiles").add_child(bullet)
 
 func _on_ShootTimer_timeout():
 	shoot()

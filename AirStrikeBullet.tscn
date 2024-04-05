@@ -68,9 +68,11 @@ script = ExtResource( 1 )
 
 [node name="MissileBody" type="AnimatedSprite" parent="."]
 rotation = 1.5708
+scale = Vector2( 4, 4 )
 frames = SubResource( 11 )
 
 [node name="Explosion" type="AnimatedSprite" parent="."]
+scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
