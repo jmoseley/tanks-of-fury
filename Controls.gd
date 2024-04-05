@@ -10,6 +10,7 @@ var viewport_size = Vector2()
 var cover: CanvasLayer
 var ghost_player: Area2D
 var ghost_path: Line2D
+var path: Line2D
 var powerup_menu
 var player: KinematicBody2D
 var camera: Camera2D
@@ -18,9 +19,10 @@ func _ready():
 	player_click_radius = 50
 	cover = get_node("/root/Main/GhostCover")
 	cover.hide()
+	path = get_node("/root/Main/Characters/Path")
 	ghost_player = get_node("/root/Main/GhostPlayerLayer/GhostPlayer")
 	ghost_player.hide()
-	ghost_path = get_node("/root/Main/Characters/GhostPath")
+	ghost_path = get_node("/root/Main/GhostPlayerLayer/GhostPath")
 	powerup_menu = get_node('/root/Main/HUD/PowerupMenu')
 	powerup_menu.hide()
 	print(powerup_menu)
@@ -51,9 +53,9 @@ func _process(delta):
 			camera_position.y += clamp(camera_speed * (1 - (viewport_size.y - last_drag_position.y) / (viewport_size.y * camera_scroll_edge_size)), 0, camera_speed) * delta
 		camera.global_position = camera_position
 		ghost_player.position = global_position
-		ghost_player.rotation = lerp_angle(ghost_player.rotation, (global_position - ghost_path.get_point_position(0)).angle(), 0.2)
-		if ghost_path.get_point_count() == 0 or (ghost_path.get_point_position(0) - global_position).length() > 20:
-			ghost_path.add_point(global_position, 0)
+		ghost_player.rotation = lerp_angle(ghost_player.rotation, (global_position - ghost_path.get_point_position(ghost_path.get_point_count() - 1)).angle(), 0.2)
+		if ghost_path.get_point_count() == 0 or (ghost_path.get_point_position(ghost_path.get_point_count() - 1) - global_position).length() > 20:
+			ghost_path.add_point(global_position)
 
 func _on_PowerupMenu_item_selected(id: String, position: Vector2):
 	var viewport_position = get_viewport().get_canvas_transform().affine_inverse() * position
@@ -101,11 +103,14 @@ func _input(event):
 			if player_dragging:
 				player_dragging = false
 				ghost_player.hide()
+				path.clear_points()
+				for i in range(ghost_path.get_point_count()):
+					path.add_point(ghost_path.get_point_position(i), 0)
+				ghost_path.clear_points()
 			cover.hide()
 			get_tree().paused = false
 			camera.smoothing_enabled = true
 
 	if event is InputEventScreenDrag:
 		if player_dragging:
-			print("update Dragging player", event.position)
 			last_drag_position = event.position

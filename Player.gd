@@ -19,7 +19,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 	set_health(1000)
-	path = get_node("/root/Main/Characters/GhostPath")
+	path = get_node("/root/Main/Characters/Path")
 
 func _process(_delta):
 	var min_distance = INF
