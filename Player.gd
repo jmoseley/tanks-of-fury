@@ -128,13 +128,14 @@ func _on_Player_hit(damage, _location, velocity):
 func _on_Body_animation_finished():
 	emit_signal("dead")
 	$Body.stop()
-	$Body.scale = Vector2(0.75, 0.75)
 	hide()
 
 func crate_acquired():
 	pass
 
 func shoot():
+	if health <= 0:
+		return
 	# Create a new instance of the Bullet scene.
 	var bullet = bullet_scene.instance()
 

@@ -19,12 +19,12 @@ var target_position = Vector2.ZERO
 var age = 0
 var movement_velocity = Vector2.ZERO
 var impulse_velocity = Vector2.ZERO
+var mob_type = GameState.MobType.FIGHTER
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("mobs")
 	angle = rotation
-	speed = rand_range(50.0, 150.0)
 	target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
 	next_position_change = rand_range(1, 5)
 
@@ -37,7 +37,9 @@ func _process(delta):
 	if time_since_position_change > next_position_change:
 		time_since_position_change = 0
 		next_position_change = rand_range(1, 5)
-		target_position = Vector2(rand_range(0, get_viewport().size.x), rand_range(0, get_viewport().size.y))
+		var player_position = get_node("/root/Main/Characters/Player").global_position
+		# choose a location within 200 pixels of the player
+		target_position = Vector2(rand_range(player_position.x - 200, player_position.x + 200), rand_range(player_position.y - 200, player_position.y + 200))
 
 func control(delta):
 	if health <= 0:
@@ -78,7 +80,11 @@ func _on_Mob_hit(damage, _location, velocity):
 	health -= damage
 	if health <= 0:
 		$ShootTimer.stop()
-		$Body.play("die")
+		match mob_type:
+			GameState.MobType.BOMBER:
+				$Body.play("bomber_explode")
+			GameState.MobType.FIGHTER:
+				$Body.play("fighter_explode")
 		$Body.connect("animation_finished", self, "queue_free", [], CONNECT_ONESHOT)
 		$CollisionShape2D.set_deferred("disabled", true)
 		emit_signal("die", age)
@@ -102,3 +108,19 @@ func shoot():
 
 func _on_ShootTimer_timeout():
 	shoot()
+
+func set_type(type):
+	mob_type = type
+	match type:
+		GameState.MobType.BOMBER:
+			health = 100
+			speed = 100
+			bullet_speed = 200
+			bullet_damage = 10
+			$Body.play("bomber")
+		GameState.MobType.FIGHTER:
+			health = 30
+			speed = 150
+			bullet_speed = 400
+			bullet_damage = 5
+			$Body.play("fighter")

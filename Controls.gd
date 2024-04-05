@@ -72,7 +72,7 @@ func _on_PowerupMenu_cancelled():
 export var player_click_radius = 100
 
 func _input(event):
-	if player.health <= 0:
+	if player.health <= 0 or GameState.game_running == false:
 		return
 	# Mouse in viewport coordinates.
 	if event is InputEventScreenTouch or (event is InputEventMouseButton and event.button_index == BUTTON_LEFT):

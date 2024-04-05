@@ -201,13 +201,6 @@ texture_mode = 1
 [node name="Projectiles" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="MobTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 360, 900 )
 
@@ -242,5 +235,3 @@ region_rect = Rect2( 0, 0, 2160, 3840 )
 [connection signal="dead" from="Characters/Player" to="." method="_on_Player_dead"]
 [connection signal="on_health_changed" from="Characters/Player" to="." method="_on_Player_health_changed"]
 [connection signal="on_health_changed" from="Characters/Player" to="HUD" method="_on_Player_on_health_changed"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
